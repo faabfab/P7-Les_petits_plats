@@ -1,0 +1,30 @@
+{
+  "name": "p7-les_petits_plats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf build && yarn build-sass",
+    "build-sass": "node-sass --output-style expanded assets/scss/index.scss ./assets/css/index.css  && yarn  build-autoprefix",
+    "build-autoprefix": "postcss --use autoprefixer --map --output ./assets/css/index.css ./assets/css/index.css",
+    "watch": "tailwindcss -i ./assets/scss/index.css -o ./assets/css/index.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.15",
+    "eslint": "^8.47.0",
+    "node-sass": "^9.0.0",
+    "postcss": "^8.4.28",
+    "postcss-cli": "^10.1.0",
+    "postcss-easy-import": "^4.0.0",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
+    "scss": "^0.2.4",
+    "tailwindcss": "^3.3.3"
+  },
+  "dependencies": {
+    "eslint-config-airbnb": "^19.0.4"
+  }
+}
