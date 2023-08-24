@@ -542,36 +542,6 @@ video {
   width: 100%;
 }
 
-@media (min-width: 640px){
-  .container{
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px){
-  .container{
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px){
-  .container{
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px){
-  .container{
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px){
-  .container{
-    max-width: 1536px;
-  }
-}
-
 .sr-only{
   position: absolute;
   width: 1px;
@@ -2359,6 +2329,14 @@ header{
   flex-direction: column;
   align-items: center;
   background-image: url('/assets/img/header_background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 1279px){
+  header{
+    width: 100%;
+  }
 }
 
 header .logo{
@@ -2377,6 +2355,12 @@ header h1{
   text-align: center;
 }
 
+@media (max-width: 1023px){
+  header h1{
+    width: 100%;
+  }
+}
+
 header .search_bar{
   margin-top: 20px;
   display: flex;
@@ -2387,6 +2371,12 @@ header .search_bar{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   padding: 11px;
+}
+
+@media (max-width: 1023px){
+  header .search_bar{
+    width: 100%;
+  }
 }
 
 header .search_bar input[type='search']{
@@ -2442,39 +2432,9 @@ header .search_bar button[type='reset']{
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
-@media (min-width: 640px){
+@media (max-width: 639px){
   .sm\:container{
     width: 100%;
-  }
-
-  @media (min-width: 640px){
-    .sm\:container{
-      max-width: 640px;
-    }
-  }
-
-  @media (min-width: 768px){
-    .sm\:container{
-      max-width: 768px;
-    }
-  }
-
-  @media (min-width: 1024px){
-    .sm\:container{
-      max-width: 1024px;
-    }
-  }
-
-  @media (min-width: 1280px){
-    .sm\:container{
-      max-width: 1280px;
-    }
-  }
-
-  @media (min-width: 1536px){
-    .sm\:container{
-      max-width: 1536px;
-    }
   }
 }
 
@@ -2500,17 +2460,17 @@ header .search_bar button[type='reset']{
   text-align: center;
 }
 
-@media (min-width: 640px){
-  .sm\:underline{
-    text-decoration-line: underline;
-  }
-}
-
 @media (prefers-color-scheme: dark){
-  @media (min-width: 1024px){
+  @media (max-width: 1023px){
     .dark\:lg\:hover\:\[paint-order\:markers\]:hover{
       paint-order: markers;
     }
+  }
+}
+
+@media (max-width: 639px){
+  .sm\:underline{
+    text-decoration-line: underline;
   }
 }
 
