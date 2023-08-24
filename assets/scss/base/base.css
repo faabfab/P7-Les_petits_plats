@@ -1,3 +1,8 @@
+body{
+    @apply flex flex-col items-center;
+}
+
 h1{
     font-family: 'Anton', sans-serif;
+    @apply text-4xl font-normal text-yellow-200;
 }
