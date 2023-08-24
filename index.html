@@ -35,7 +35,69 @@
             </form>
         </header>
         <main>
-            <h1>Main</h1>
+            <section id="filters_section">
+                <div id="filters">
+                    <div class="filter">
+                        <div class="filter_list_btn">
+                            <span>
+                                Filters
+                            </span>
+                            <span class="filter_list_state">
+                                <img src="/assets/img/list_close.svg" alt="">
+                            </span>
+                        </div>
+                        <form id="filter_search">
+                            <input type="search" name="filter_search_input" id="filter_search_input">
+                            <button type="reset" class="filter_btn_reset">
+                                <svg width="6" height="6" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="#7A7A7A" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <button type="submit" class="filter_btn_submit">
+                                <svg width="13" height="14" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10.4219" r="9.5" stroke="#7A7A7A"/>
+                                    <line x1="18.3536" y1="19.0683" x2="27.3536" y2="28.0683" stroke="#7A7A7A"/>
+                                </svg>
+                            </button>
+                        </form>
+                        <ul class="filter_list_selected">
+                            <li>item selected</li>
+                        </ul>
+                        <ul class="filter_list">
+                            <li>item1</li>
+                            <li>item1</li>
+                            <li>item1</li>
+                            <li>item1</li>                            
+                        </ul>
+                    </div>
+                    <div class="filter">
+                        <div class="filter_list_btn">
+                            <span>
+                                Filters
+                            </span>
+                            <span class="filter_list_state">
+                                <img src="/assets/img/list_open.svg" alt="">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <div class="filter_list_btn">
+                            <span>
+                                Filters
+                            </span>
+                            <span class="filter_list_state">
+                                <img src="/assets/img/list_open.svg" alt="">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <h2 id="total_recipes">
+                    <span id="total">0</span> recettes
+                </h2>
+            </section>
+            <sections id="cards">
+                <h1>Cards</h1>
+            </sections>
         </main>
 
         <script src="assets/js/index.js" async defer type="module"></script>

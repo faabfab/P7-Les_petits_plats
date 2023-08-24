@@ -3,7 +3,7 @@ header{
     @apply xl:w-full;
 }
 header .logo{
-    @apply w-full mt-[50px] ml-[70px];
+    @apply w-full mt-[70px] ml-[50px];
 }
 header .logo img{
     @apply w-[205px];
@@ -38,4 +38,59 @@ header .search_bar button[type='submit'] img{
 
 header .search_bar button[type='reset']{
     @apply text-gray-700 w-[50px];
+}
+
+main{
+    @apply bg-[#E5E5E5] w-[1440px] pl-[70px] pr-[70px] pt-[20px];
+    @apply xl:w-full;
+}
+
+main #filters_section{
+    @apply flex justify-between;
+    @apply xl:flex-col;
+}
+#filters{
+    @apply flex;
+    @apply xl:justify-between xl:flex-wrap;
+}
+.filter{
+    @apply bg-white w-[200px] rounded-[11px] mr-[50px] h-max;
+    @apply  xl:mb-[10px];
+}
+.filter_list_btn{
+    font-family: 'Manrope', sans-serif;
+    @apply  p-[15px] w-full flex justify-between items-center text-[16px] font-medium;
+}
+#filter_search{
+    @apply ml-[15px] mr-[15px] border-[#C6C6C6] border-solid border h-[36px] flex items-center justify-around mb-[10px];
+}
+#filter_search_input{
+    @apply focus:outline-none hover:cursor-pointer w-[125px] pl-[5px];
+}
+#filter_search_input::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+    content: url();
+    cursor: pointer;
+}
+.filter_btn_reset{
+    @apply p-0 w-[10px];
+}
+
+.filter_btn_submit{
+    @apply p-0 w-[20px];
+}
+
+.filter_list{
+    font-family: 'Manrope', sans-serif;
+    @apply text-[14px] text-[#1B1B1B] p-[15px];
+}
+.filter_list li{
+    @apply mb-[10px];
+}
+
+.filter_list_selected{
+    @apply mb-[10px];
+}
+.filter_list_selected li{
+    @apply bg-[#FFD15B] mb-[2px] pl-[15px] pr-[15px] pt-[10px] pb-[10px];
 }
