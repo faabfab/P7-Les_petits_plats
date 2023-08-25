@@ -2484,7 +2484,8 @@ button{
 }
 
 #card picture img{
-  width: 380px;
+  height: 100%;
+  width: 100%;
   border-top-left-radius: 21px;
   border-top-right-radius: 21px;
   -o-object-fit: cover;

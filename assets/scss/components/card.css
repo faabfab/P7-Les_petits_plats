@@ -5,7 +5,7 @@
     @apply block rounded-t-[21px] w-[380px] h-[253px] overflow-hidden;
 }
 #card picture img{
-    @apply w-[380px] rounded-t-[21px] object-cover; 
+    @apply w-[100%] h-[100%] rounded-t-[21px] object-cover; 
 }
 
 #card .card_content{
