@@ -10,6 +10,7 @@
 @import "./components/button.css";
 @import "./components/filters.css";
 @import "./components/item_selected.css";
+@import "./components/card.css";
 
 /* Layout */
 @import "./layout/header.css";

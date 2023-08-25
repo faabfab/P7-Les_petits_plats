@@ -11,3 +11,18 @@ h2{
     font-family: 'Anton', sans-serif;
     @apply text-[21px] font-normal;
 }
+
+h3{
+    font-family: 'Anton', sans-serif;
+    @apply text-[18px] font-normal;
+}
+
+h4{
+    font-family: 'Manrope', sans-serif;
+    @apply text-[12px] font-bold uppercase text-[#7A7A7A] tracking-[2px];
+}
+
+p{
+    font-family: 'Manrope', sans-serif;
+    @apply text-[14px] font-normal;
+}

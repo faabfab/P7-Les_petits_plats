@@ -2311,6 +2311,28 @@ h2{
   font-weight: 400;
 }
 
+h3{
+  font-family: 'Anton', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+h4{
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  --tw-text-opacity: 1;
+  color: rgb(122 122 122 / var(--tw-text-opacity));
+}
+
+p{
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
 /* Custom Components */
 
 button{
@@ -2436,8 +2458,75 @@ button{
   padding: 15px;
 }
 
-.item_selected-close:hover{
+.item_selected_close{
+  margin-left: 15px;
+}
+
+.item_selected_close:hover{
   cursor: pointer;
+}
+
+#card{
+  margin-bottom: 30px;
+  width: 380px;
+  border-radius: 21px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+#card picture{
+  display: block;
+  height: 253px;
+  width: 380px;
+  overflow: hidden;
+  border-top-left-radius: 21px;
+  border-top-right-radius: 21px;
+}
+
+#card picture img{
+  width: 380px;
+  border-top-left-radius: 21px;
+  border-top-right-radius: 21px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#card .card_content{
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#card .card_content h3{
+  margin-top: 30px;
+}
+
+#card .card_content h4{
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+#card .card_content .card_ingredients{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#card .card_content .card_ingredients .card_ingredient{
+  margin-bottom: 25px;
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+
+#card .card_content .card_ingredients .card_ingredient .card_ingredient_name{
+  font-weight: 500;
+}
+
+#card .card_content .card_ingredients .card_ingredient .card_ingredient_quantity{
+  --tw-text-opacity: 1;
+  color: rgb(122 122 122 / var(--tw-text-opacity));
 }
 
 /* Layout */
@@ -2561,6 +2650,13 @@ main #filters_section{
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
+}
+
+#cards{
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 /* Pages */

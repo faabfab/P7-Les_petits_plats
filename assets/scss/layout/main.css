@@ -10,3 +10,7 @@ main #filters_section{
 #items_selected{
     @apply mt-[20px] flex flex-wrap;
 }
+
+#cards{
+    @apply mt-[20px] flex flex-wrap justify-between;
+}
