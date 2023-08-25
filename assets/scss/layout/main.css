@@ -1,0 +1,12 @@
+main #filters_section{
+    @apply flex justify-between;
+    @apply xl:flex-col;
+}
+#filters{
+    @apply flex;
+    @apply xl:justify-between xl:flex-wrap;
+}
+
+#items_selected{
+    @apply mt-[20px] flex flex-wrap;
+}

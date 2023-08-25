@@ -8,7 +8,13 @@
 
 /* Custom Components */
 @import "./components/button.css";
+@import "./components/filters.css";
+@import "./components/item_selected.css";
+
+/* Layout */
+@import "./layout/header.css";
+@import "./layout/main.css";
 
 /* Pages */
-@import "./pages/home.css"
+@import "./pages/home.css";
 

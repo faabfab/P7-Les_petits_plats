@@ -1,0 +1,7 @@
+.item_selected{
+    @apply flex items-center justify-between p-[15px] bg-[#FFD15B] rounded-[10px] min-w-[140px] mr-[50px] mb-[10px];
+}
+
+.item_selected-close{
+    @apply hover:cursor-pointer;
+}
