@@ -1,5 +1,5 @@
 header .logo{
-    @apply w-full mt-[70px] ml-[50px];
+    @apply w-full mt-[50px] ml-[50px];
 }
 header .logo img{
     @apply w-[205px];

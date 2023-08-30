@@ -1,32 +1,43 @@
-#card{
-    @apply w-[380px] bg-white rounded-[21px] mb-[30px];
+.card{
+    @apply w-[380px] bg-white rounded-[21px] mb-[30px] relative;
 }
-#card picture{
-    @apply block rounded-t-[21px] w-[380px] h-[253px] overflow-hidden;
-}
-#card picture img{
-    @apply w-[100%] h-[100%] rounded-t-[21px] object-cover; 
+/* FIXME: minutes */
+.card .card_time{
+    font-family: 'Manrope', sans-serif;
+    @apply absolute w-[65px] h-[26px] bg-[#FFD15B] z-20 top-[20px] left-[295px] rounded-full text-center text-[12px] pt-[5px] pb-[5px] pl-[15px] pr-[15px];
 }
 
-#card .card_content{
+.card picture{
+    @apply block rounded-t-[21px] w-[380px] h-[253px] overflow-hidden;
+}
+.card picture img{
+    @apply w-[100%] h-[100%] rounded-t-[21px] object-cover; 
+}
+/* FIXME: Limitation a 4 ligne pour la description */
+
+.card .card_content{
     @apply ml-[20px] mr-[20px] mt-[30px] mb-[30px];
 }
 
-#card .card_content h3{
+.card .card_content h3{
     @apply mt-[30px];
 }
-#card .card_content h4{
+.card .card_content h4{
     @apply mt-[30px] mb-[20px];
 }
-#card .card_content .card_ingredients{
+
+.card .card_content .card_content_description{
+    @apply h-[85px] overflow-hidden;
+}
+.card .card_content .card_ingredients{
     @apply flex flex-wrap justify-between;
 }
-#card .card_content .card_ingredients .card_ingredient{
+.card .card_content .card_ingredients .card_ingredient{
     @apply flex flex-col w-[50%] mb-[25px];
 }
-#card .card_content .card_ingredients .card_ingredient .card_ingredient_name{
+.card .card_content .card_ingredients .card_ingredient .card_ingredient_name{
     @apply font-medium;
 }
-#card .card_content .card_ingredients .card_ingredient .card_ingredient_quantity{
+.card .card_content .card_ingredients .card_ingredient .card_ingredient_quantity{
     @apply text-[#7A7A7A];
 }

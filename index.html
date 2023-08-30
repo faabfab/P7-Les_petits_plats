@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,10 +9,6 @@
         <link rel="stylesheet" href="assets/css/index.css">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
         <header>
             <div class="logo">
                 <a href="/">
@@ -24,20 +16,20 @@
                 </a>
             </div>
             <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
-            <form action="" method="get" class="search_bar">
+            <form method="get" class="search_bar">
                 <input type="search" name="search" id="search" placeholder="Rechercher une recette, un ingrédient, ...">
                 <button type="reset">
                     <img src="/assets/img/close_search.svg" alt="reset search">
                 </button>
                 <button type="submit">
-                    <img src="/assets/img/loop.svg" alt="loop" width="28px">
+                    <img src="/assets/img/loop.svg" alt="loop">
                 </button>
             </form>
         </header>
         <main>
             <section id="filters_section">
                 <div id="filters">
-                    <div class="filter">
+                    <div class="filter hidden_div">
                         <div class="filter_list_btn">
                             <span>
                                 Filters
@@ -73,7 +65,7 @@
                     <div class="filter">
                         <div class="filter_list_btn">
                             <span>
-                                Filters
+                                Ingrédients
                             </span>
                             <span class="filter_list_state">
                                 <img src="/assets/img/list_open.svg" alt="">
@@ -83,7 +75,17 @@
                     <div class="filter">
                         <div class="filter_list_btn">
                             <span>
-                                Filters
+                                Appareils
+                            </span>
+                            <span class="filter_list_state">
+                                <img src="/assets/img/list_open.svg" alt="">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <div class="filter_list_btn">
+                            <span>
+                                Ustensiles
                             </span>
                             <span class="filter_list_state">
                                 <img src="/assets/img/list_open.svg" alt="">
@@ -95,7 +97,7 @@
                     <span id="total">0</span> recettes
                 </h2>
             </section>
-            <section id="items_selected">
+            <div id="items_selected" class="hidden_div">
                 <div class="item_selected">
                     <p>selected</p>
                     <div class="item_selected_close">
@@ -120,122 +122,11 @@
                         </svg>
                     </div>
                 </div>
-            </section>
-            <sections id="cards">
-                <article id="card">
-                    <picture>
-                        <img src="/assets/img/recipes/Recette01.jpg" alt="recette 01">
-                    </picture>
-                    <div class="card_content">
-                        <h3>Titre de la recette</h3>
-                        <h4>RECETTE</h4>
-                        <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
-                        <h4>Ingrédients</h4>
-                        <div class="card_ingredients">
-                            <p class="card_ingredient">
-                                <span class="card_ingredient_name">
-                                    Lait de coco
-                                </span>
-                                <span class="card_ingredient_quantity">
-                                    400ml
-                                </span>
-                            </p>
-                            <p class="card_ingredient">
-                                <span class="card_ingredient_name">
-                                    Lait de coco
-                                </span>
-                                <span class="card_ingredient_quantity">
-                                    400ml
-                                </span>
-                            </p>
-                            <p class="card_ingredient">
-                                <span class="card_ingredient_name">
-                                    Lait de coco
-                                </span>
-                                <span class="card_ingredient_quantity">
-                                    400ml
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </article>
-                <article id="card">
-                    <picture>
-                        <img src="/assets/img/recipes/Recette01.jpg" alt="recette 01">
-                    </picture>
-                    <div class="card_content">
-                        <h3>Titre de la recette</h3>
-                        <h4>RECETTE</h4>
-                        <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
-                        <h4>Ingrédients</h4>
-                        <div class="card_ingredients">
-                            <p class="card_ingredient">
-                                <span class="card_ingredient_name">
-                                    Lait de coco
-                                </span>
-                                <span class="card_ingredient_quantity">
-                                    400ml
-                                </span>
-                            </p>
-                            <p class="card_ingredient">
-                                <span class="card_ingredient_name">
-                                    Lait de coco
-                                </span>
-                                <span class="card_ingredient_quantity">
-                                    400ml
-                                </span>
-                            </p>
-                            <p class="card_ingredient">
-                                <span class="card_ingredient_name">
-                                    Lait de coco
-                                </span>
-                                <span class="card_ingredient_quantity">
-                                    400ml
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </article>
-                <article id="card">
-                    <picture>
-                        <img src="/assets/img/recipes/Recette01.jpg" alt="recette 01">
-                    </picture>
-                    <div class="card_content">
-                        <h3>Titre de la recette</h3>
-                        <h4>RECETTE</h4>
-                        <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
-                        <h4>Ingrédients</h4>
-                        <div class="card_ingredients">
-                            <p class="card_ingredient">
-                                <span class="card_ingredient_name">
-                                    Lait de coco
-                                </span>
-                                <span class="card_ingredient_quantity">
-                                    400ml
-                                </span>
-                            </p>
-                            <p class="card_ingredient">
-                                <span class="card_ingredient_name">
-                                    Lait de coco
-                                </span>
-                                <span class="card_ingredient_quantity">
-                                    400ml
-                                </span>
-                            </p>
-                            <p class="card_ingredient">
-                                <span class="card_ingredient_name">
-                                    Lait de coco
-                                </span>
-                                <span class="card_ingredient_quantity">
-                                    400ml
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </article>
-            </sections>
+            </div>
+            <div id="cards">
+            </div>
         </main>
 
-        <script src="assets/js/index.js" async defer type="module"></script>
+        <script src="assets/js/index.js" async type="module"></script>
     </body>
 </html>

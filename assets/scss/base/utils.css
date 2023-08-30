@@ -1,0 +1,3 @@
+.hidden_div{
+    @apply hidden !important;
+}
