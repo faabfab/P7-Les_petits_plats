@@ -2372,6 +2372,7 @@ button{
   font-family: 'Manrope', sans-serif;
   display: flex;
   width: 100%;
+  cursor: pointer;
   align-items: center;
   justify-content: space-between;
   padding: 15px;
