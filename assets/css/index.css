@@ -2399,13 +2399,13 @@ button{
   padding-left: 5px;
 }
 
-#filter_search_input:hover{
-  cursor: pointer;
-}
-
 #filter_search_input:focus{
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+#filter_search_input:hover{
+  cursor: pointer;
 }
 
 #filter_search_input::-webkit-search-cancel-button{
@@ -2426,14 +2426,26 @@ button{
 
 .filter_list{
   font-family: 'Manrope', sans-serif;
-  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-height: 220px;
+  overflow-y: auto;
   font-size: 14px;
   --tw-text-opacity: 1;
   color: rgb(27 27 27 / var(--tw-text-opacity));
 }
 
 .filter_list li{
-  margin-bottom: 10px;
+  cursor: pointer;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.filter_list li:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 209 91 / var(--tw-bg-opacity));
 }
 
 .filter_list_selected{

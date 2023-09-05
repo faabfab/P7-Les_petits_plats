@@ -10,7 +10,8 @@
     @apply ml-[15px] mr-[15px] border-[#C6C6C6] border-solid border h-[36px] flex items-center justify-around mb-[10px];
 }
 #filter_search_input{
-    @apply focus:outline-none hover:cursor-pointer w-[125px] pl-[5px];
+    @apply focus:outline-none w-[125px] pl-[5px];
+    @apply hover:cursor-pointer;
 }
 #filter_search_input::-webkit-search-cancel-button{
     -webkit-appearance: none;
@@ -27,10 +28,10 @@
 
 .filter_list{
     font-family: 'Manrope', sans-serif;
-    @apply text-[14px] text-[#1B1B1B] p-[15px];
+    @apply text-[14px] text-[#1B1B1B] mt-[10px] mb-[10px] max-h-[220px] overflow-y-auto;
 }
 .filter_list li{
-    @apply mb-[10px];
+    @apply pl-[15px] pr-[15px] pt-[10px] pb-[10px] cursor-pointer hover:bg-[#FFD15B];
 }
 
 .filter_list_selected{
