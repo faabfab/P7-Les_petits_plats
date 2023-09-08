@@ -1,24 +1,20 @@
 /* eslint-disable import/extensions */
 /* eslint-disable linebreak-style */
 import { recipes } from '../data/recipes.js';
-import { filterListCleaner, recipesCounter } from './utils/ModulesEvents.js';
+import { recipesCounter } from './utils/ModulesEvents.js';
 
-import { getCards, getFilterList } from './utils/datas.js';
+import { applianceArray, getCards, getFilterElements, ingredientsArray, ustensilsArray } from './utils/datas.js';
 
 function init() {
   // DOM init
-  getCards(recipes, total);
+  getCards(recipes);
 
-  getFilterList(recipes, 'ingredients');
-  filterListCleaner('ingredients');
-  getFilterList(recipes, 'appliance');
-  filterListCleaner('appliance');
-  getFilterList(recipes, 'ustensils');
-  filterListCleaner('ustensils');
+  getFilterElements(ingredientsArray(recipes), 'ingredients');
+  getFilterElements(applianceArray(recipes), 'appliance');
+  getFilterElements(ustensilsArray(recipes), 'ustensils');
 
   // DOM Events
   // Input principal
-  // FIXME: reset après 3 caractères
   const search = document.querySelector('#search');
   const reset = document.querySelector('#search_reset');
   reset.addEventListener('click', () => {
@@ -32,7 +28,7 @@ function init() {
       reset.setAttribute('class', 'hidden_div');
     }
   };
-  
+
   // filters
   // TODO: Événements sur les filtres
   const filters = document.querySelectorAll('.filter')
@@ -54,8 +50,7 @@ function init() {
   });
 
   // total recipes
-  recipesCounter()
+  recipesCounter();
 }
 
 init();
-

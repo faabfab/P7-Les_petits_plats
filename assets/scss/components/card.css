@@ -1,7 +1,6 @@
 .card{
     @apply w-[380px] bg-white rounded-[21px] mb-[30px] relative;
 }
-/* FIXME: minutes */
 .card .card_time{
     font-family: 'Manrope', sans-serif;
     @apply absolute w-[65px] h-[26px] bg-[#FFD15B] z-20 top-[20px] left-[295px] rounded-full text-center text-[12px] pt-[5px] pb-[5px] pl-[15px] pr-[15px];
@@ -13,7 +12,6 @@
 .card picture img{
     @apply w-[100%] h-[100%] rounded-t-[21px] object-cover; 
 }
-/* FIXME: Limitation a 4 ligne pour la description */
 
 .card .card_content{
     @apply ml-[20px] mr-[20px] mt-[30px] mb-[30px];

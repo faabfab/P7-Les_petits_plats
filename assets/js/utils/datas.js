@@ -1,15 +1,20 @@
+// =============================================================================
+//  CARDS
+// =============================================================================
+
 function elementDatas(element) {
   const article = document.createElement('article');
   article.setAttribute('class', 'card');
-  // FIXME: Insérer minutes
   const divTime = document.createElement('div');
   divTime.setAttribute('class', 'card_time');
   divTime.textContent = `${element.time}min`;
   article.appendChild(divTime);
+  // TODO: Mettre lien # sur les images
   const picture = document.createElement('picture');
   const img = document.createElement('img');
   const imgPath = `/assets/img/recipes/${element.image}`;
   img.setAttribute('src', imgPath);
+  // TODO: Mettre les alt
   picture.appendChild(img);
   const div = document.createElement('div');
   div.setAttribute('class', 'card_content');
@@ -59,60 +64,62 @@ async function getCards(jsonConst) {
   });
 }
 
-function ingredientsDatas(element) {
-  // TODO: Faire un tableau sans redondance
-  const ul = document.createElement('ul');
-  element.ingredients.forEach((ingredients) => {
-    const li = document.createElement('li');
-    li.textContent = ingredients.ingredient;
-    ul.appendChild(li)
-  });
-  return ul;
-}
+// =============================================================================
+// FILTERS
+// =============================================================================
 
-function applianceDatas(element) {
-  const ul = document.createElement('ul');
-  const li = document.createElement('li');
-  li.textContent = element.appliance;
-  ul.appendChild(li);
-  return ul;
-}
-
-function ustensilsDatas(element) {
-  const ul = document.createElement('ul');
-  element.ustensils.forEach((ustensil) => {
-    const li = document.createElement('li');
-    li.textContent = ustensil;
-    ul.appendChild(li);
-  });
-  return ul;
-}
-
-function getFilterList(jsonConst, filter) {
-  const idFilter = `#${filter}_list`
-  const ingredientsList = document.querySelector(idFilter);
+function ingredientsArray(jsonConst) {
+  const ingredientsList = [];
   jsonConst.forEach((element) => {
-    switch (filter) {
-      case 'ingredients':
-        ingredientsDatas(element).childNodes.forEach((li) => {
-          ingredientsList.appendChild(li);
-        });
-        break;
-      case 'appliance':
-        applianceDatas(element).childNodes.forEach((li) => {
-          ingredientsList.appendChild(li);
-        });
-        break;
-      case 'ustensils':
-        ustensilsDatas(element).childNodes.forEach((li) => {
-          ingredientsList.appendChild(li);
-        });
-        break;
-      default:
-        break;
-    }
+    element.ingredients.forEach((el) => {
+      if (!(ingredientsList.includes(el.ingredient))) {
+        ingredientsList.push(el.ingredient);
+      }
+    });
   });
   return ingredientsList;
 }
 
-export { getCards, getFilterList };
+function applianceArray(jsonConst) {
+  const applianceList = [];
+  jsonConst.forEach((element) => {
+    if (!applianceList.includes(element.appliance)) {
+      applianceList.push(element.appliance);
+    }
+  });
+  return applianceList;
+}
+
+function ustensilsArray(jsonConst) {
+  const ustensilsList = [];
+  jsonConst.forEach((element) => {
+    element.ustensils.forEach((el) => {
+      if (!ustensilsList.includes(el)) {
+        ustensilsList.push(el);
+      }
+    });
+  });
+  return ustensilsList;
+}
+
+function getFilterElements(filterArray, filter) {
+  const idFilter = `#${filter}_list`;
+  const ingredientsList = document.querySelector(idFilter);
+  filterArray.forEach((element) => {
+    const li = document.createElement('li');
+    li.textContent = element;
+    ingredientsList.appendChild(li);
+  });
+}
+
+// =============================================================================
+// EXPORTS
+// =============================================================================
+
+export {
+  getCards,
+  ingredientsArray,
+  applianceArray,
+  ustensilsArray,
+  getFilterElements,
+};

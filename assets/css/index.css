@@ -2380,7 +2380,7 @@ button{
   font-weight: 500;
 }
 
-#filter_search{
+.filter_search{
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 10px;
@@ -2394,21 +2394,21 @@ button{
   border-color: rgb(198 198 198 / var(--tw-border-opacity));
 }
 
-#filter_search_input{
+.filter_search_input{
   width: 125px;
   padding-left: 5px;
 }
 
-#filter_search_input:focus{
+.filter_search_input:focus{
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
 
-#filter_search_input:hover{
+.filter_search_input:hover{
   cursor: pointer;
 }
 
-#filter_search_input::-webkit-search-cancel-button{
+.filter_search_input::-webkit-search-cancel-button{
   -webkit-appearance: none;
   content: url();
   cursor: pointer;
@@ -2492,8 +2492,6 @@ button{
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-/* FIXME: minutes */
-
 .card .card_time{
   font-family: 'Manrope', sans-serif;
   position: absolute;
@@ -2530,8 +2528,6 @@ button{
   -o-object-fit: cover;
      object-fit: cover;
 }
-
-/* FIXME: Limitation a 4 ligne pour la description */
 
 .card .card_content{
   margin-left: 20px;
