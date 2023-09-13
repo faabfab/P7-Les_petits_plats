@@ -3,7 +3,7 @@
 // IMPORTS
 // =============================================================================
 import { recipes } from '../data/recipes.js';
-import { recipesCounter, tagElement } from './utils/ModulesEvents.js';
+import { closeButtonSearchInput, recipesCounter, tagElement } from './utils/ModulesEvents.js';
 
 import {
   applianceArray,
@@ -26,22 +26,11 @@ function init() {
 
   // Events on DOM
   // Input principal
-  const search = document.querySelector('#search');
-  const reset = document.querySelector('#search_reset');
-  reset.addEventListener('click', () => {
-    reset.setAttribute('class', 'hidden_div');
-  });
-  search.onkeyup = () => {
-    if (search.value.length >= 3) {
-      reset.removeAttribute('class');
-    }
-    else {
-      reset.setAttribute('class', 'hidden_div');
-    }
-  };
+  closeButtonSearchInput('#search', '#search_reset');
 
   // Filters
   // TODO: Événements sur les filtres
+  // Tags
   const filters = document.querySelectorAll('.filter')
   filters.forEach((filter) => {
     const filterListBtn = filter.querySelector('.filter_list_btn');
@@ -57,8 +46,12 @@ function init() {
         filterListContent.classList.add('hidden_div');
         filter.setAttribute('data-state', 'close');
       }
-    });
+    });    
   });
+  // search input
+  closeButtonSearchInput('#ingredients_search_input', '#ingredients_btn_reset');
+  closeButtonSearchInput('#appliance_search_input', '#appliance_btn_reset');
+  closeButtonSearchInput('#ustensils_search_input', '#ustensils_btn_reset');
 
   // total recipes
   recipesCounter();
@@ -80,7 +73,6 @@ filtersItems.forEach((filterItem) => {
     // FIXME: Afficher le tag correspondant
     if (!tagsArray.includes(filterItem.textContent)) {
       itemsSelected.appendChild(tagElement(filterItem.textContent, tagsArray));
-      //console.log(tagsArray);
     }
   });
 });

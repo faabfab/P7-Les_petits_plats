@@ -22,7 +22,23 @@ function tagElement(name, tagsArray) {
   return divItemSelected;
 }
 
+function closeButtonSearchInput(input, closeButton) {
+  const search = document.querySelector(input);
+  const reset = document.querySelector(closeButton);
+  reset.addEventListener('click', () => {
+    reset.classList.add('hidden_div');
+  });
+  search.onkeyup = () => {
+    if (search.value.length >= 3) {
+      reset.classList.remove('hidden_div');
+    } else {
+      reset.classList.add('hidden_div');
+    }
+  };
+}
+
 export {
   recipesCounter,
   tagElement,
+  closeButtonSearchInput,
 };
