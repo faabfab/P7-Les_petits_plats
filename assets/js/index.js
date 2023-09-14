@@ -13,6 +13,8 @@ import {
   ustensilsArray,
 } from './utils/datasDOMDisplay.js';
 
+import DOMSearch from './utils/searchModules.js';
+
 /**
  * Fonction d'initialisation du DOM
  */
@@ -35,7 +37,7 @@ function init() {
   filters.forEach((filter) => {
     const filterListBtn = filter.querySelector('.filter_list_btn');
     const filterListState = filter.querySelector('.filter_list_state');
-    const filterListContent = filter.querySelector('.filter_list_content')
+    const filterListContent = filter.querySelector('.filter_list_content');
     filterListBtn.addEventListener('click', () => {
       if (filter.getAttribute('data-state') === 'close') {
         filterListState.innerHTML = '<img src="/assets/img/list_close.svg" alt="list close"></img>';
@@ -46,7 +48,7 @@ function init() {
         filterListContent.classList.add('hidden_div');
         filter.setAttribute('data-state', 'close');
       }
-    });    
+    });
   });
   // search input
   closeButtonSearchInput('#ingredients_search_input', '#ingredients_btn_reset');
@@ -57,6 +59,9 @@ function init() {
   recipesCounter();
 }
 
+// =============================================================================
+// Initialisation du DOM
+// =============================================================================
 init();
 
 // =============================================================================
@@ -73,6 +78,18 @@ filtersItems.forEach((filterItem) => {
     // FIXME: Afficher le tag correspondant
     if (!tagsArray.includes(filterItem.textContent)) {
       itemsSelected.appendChild(tagElement(filterItem.textContent, tagsArray));
+      // TODO: Recherche selon le tag
     }
   });
+});
+
+const total = document.querySelector('#total');
+const mainSearch = document.querySelector('#search');
+const totalDOM = total.textContent;
+const errorDiv = document.querySelector('#error-message');
+mainSearch.addEventListener('input', () => {
+  total.textContent = totalDOM - DOMSearch(mainSearch.value);
+  if (totalDOM - DOMSearch(mainSearch.value) === 0) {
+    errorDiv.innerHTML = '<h3>Pas de correspondance !!!</h3>';
+  } else { errorDiv.innerHTML = ''; }
 });
