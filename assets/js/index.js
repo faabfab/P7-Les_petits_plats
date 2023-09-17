@@ -13,7 +13,7 @@ import {
   ustensilsArray,
 } from './utils/datasDOMDisplay.js';
 
-import DOMSearch from './utils/searchModules.js';
+import { DOMSearch, searchByTag } from './utils/searchModules.js';
 
 /**
  * Fonction d'initialisation du DOM
@@ -75,14 +75,15 @@ const filtersItems = document.querySelectorAll('.filter_list li');
 const itemsSelected = document.querySelector('#items_selected');
 filtersItems.forEach((filterItem) => {
   filterItem.addEventListener('click', () => {
-    // FIXME: Afficher le tag correspondant
     if (!tagsArray.includes(filterItem.textContent)) {
       itemsSelected.appendChild(tagElement(filterItem.textContent, tagsArray));
       // TODO: Recherche selon le tag
+      searchByTag(filterItem.textContent, filterItem.parentElement.getAttribute('id'));
     }
   });
 });
 
+// Main search bar
 const total = document.querySelector('#total');
 const mainSearch = document.querySelector('#search');
 const totalDOM = total.textContent;
@@ -93,3 +94,5 @@ mainSearch.addEventListener('input', () => {
     errorDiv.innerHTML = '<h3>Pas de correspondance !!!</h3>';
   } else { errorDiv.innerHTML = ''; }
 });
+// TODO: Reapparition des recettes quand on clique sur la croix
+// TODO: Résultats sur la loupe

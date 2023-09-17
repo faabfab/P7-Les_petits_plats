@@ -21,7 +21,6 @@ function elementTime(time) {
  * @returns image DOM element
  */
 function thumbElement(image, name) {
-  // FIXME: Mettre lien # sur les images
   const a = document.createElement('a');
   a.setAttribute('href', '#');
   const picture = document.createElement('picture');
@@ -29,7 +28,6 @@ function thumbElement(image, name) {
   const imgPath = `/assets/img/recipes/${image}`;
   img.setAttribute('src', imgPath);
   img.setAttribute('alt', name);
-  // FIXME: Mettre les alt
   picture.appendChild(img);
   a.appendChild(picture);
 

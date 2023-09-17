@@ -1,3 +1,6 @@
+/**
+ * Fonction qui renvoi le nombre total de recettes à l'écran
+ */
 function recipesCounter() {
   const articles = document.querySelectorAll('article');
   const totalSpan = document.querySelector('#total');
