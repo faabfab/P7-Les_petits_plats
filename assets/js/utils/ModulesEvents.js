@@ -40,8 +40,17 @@ function closeButtonSearchInput(input, closeButton) {
   };
 }
 
+function resetSearchBar() {
+  const articles = document.querySelectorAll('article');
+  articles.forEach((article) => {
+    article.classList.remove('hidden_div');
+    recipesCounter();
+  });
+}
+
 export {
   recipesCounter,
   tagElement,
   closeButtonSearchInput,
+  resetSearchBar,
 };

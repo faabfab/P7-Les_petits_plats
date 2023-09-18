@@ -3,7 +3,7 @@
 // IMPORTS
 // =============================================================================
 import { recipes } from '../data/recipes.js';
-import { closeButtonSearchInput, recipesCounter, tagElement } from './utils/ModulesEvents.js';
+import { closeButtonSearchInput, recipesCounter, resetSearchBar, tagElement } from './utils/ModulesEvents.js';
 
 import {
   applianceArray,
@@ -94,5 +94,9 @@ mainSearch.addEventListener('input', () => {
     errorDiv.innerHTML = '<h3>Pas de correspondance !!!</h3>';
   } else { errorDiv.innerHTML = ''; }
 });
-// TODO: Reapparition des recettes quand on clique sur la croix
+
+// Reset button of search bar
+const btResetSearchBar = document.querySelector('#search_reset');
+btResetSearchBar.addEventListener('click', resetSearchBar);
+
 // TODO: Résultats sur la loupe

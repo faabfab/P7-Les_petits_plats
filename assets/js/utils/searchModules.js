@@ -1,10 +1,11 @@
+/* eslint-disable import/extensions */
+import { recipesCounter } from './ModulesEvents.js';
 
 function getCards() {
   const cards = document.querySelector('#cards');
   const articles = cards.querySelectorAll('article');
   return articles;
 }
-
 
 function isInElementT(value, DOMElement, article) {
   const element = article.querySelector(DOMElement);
@@ -79,29 +80,21 @@ function DOMSearch(value) {
 // =============================================================================
 // Filter search
 // =============================================================================
-function searchInIngredients(tag, article) {
-  const ingredients = article.querySelectorAll('.card_ingredient_name');
-  // eslint-disable-next-line no-restricted-syntax
-  for (const ingredient of ingredients) {
-    if (!(ingredient.textContent.toLowerCase() === tag)) {
-      console.log(`${tag} est dans les ingredient`);
-      //article.classList.add('hidden_div');
-    } else {
-      console.log(`${tag} n'est pas dans les ingredient`);
-    }
-  }
-}
 
 function searchInAppliance(tag, article) {
   const content = article.querySelector('.card_content');
   const appliance = content.getAttribute('data-appliance');
   // si !tag et si visible
+  if (tag !== appliance.toLowerCase()) {
+    console.log(appliance.toLowerCase());
+    article.classList.add('hidden_div');
+  }
   //  alors invisible
   // sinon (tag) si invisible
   //  alors visible
-  if (!(appliance.toLowerCase() === tag)) {
+  /*if (!(appliance.toLowerCase() === tag)) {
     article.classList.add('hidden_div');
-  } else { article.classList.remove('hidden_div'); }
+  } else { article.classList.remove('hidden_div'); }*/
 }
 
 function searchByTag(tag, filterName) {
@@ -114,7 +107,6 @@ function searchByTag(tag, filterName) {
   for (const article of articles) {
     switch (filterName) {
       case 'ingredients':
-        searchInIngredients(tag, article);
         //console.log(`rechercher ${tag} dans ingredients`);
         break;
       case 'appliance':
@@ -128,6 +120,7 @@ function searchByTag(tag, filterName) {
         break;
     }
   }
+  recipesCounter();
 }
 
 export { DOMSearch, searchByTag };

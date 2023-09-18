@@ -34,7 +34,6 @@ function thumbElement(image, name) {
   return a;
 }
 
-// TODO: Mettre ustensiles et appareils dans des datas-attributes
 
 /**
  * Fonction qui affiche la liste des ingredients de la recette
@@ -78,7 +77,6 @@ function textContentElement(name, description, ingredients, appliance, ustensils
   // appliance
   div.setAttribute('data-appliance', appliance);
   // ustensils
-  // TODO: mettre dans un tableau
   div.setAttribute('data-ustensils', [...ustensils]);
   // Name
   const h3 = document.createElement('h3');
