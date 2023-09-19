@@ -5,7 +5,9 @@
 import { recipes } from '../data/recipes.js';
 import {
   closeButtonSearchInput,
+  errorMessageEmptyRecipes,
   recipesCounter,
+  recipesDisplayCounter,
   resetSearchBar,
   tagElement,
 } from './utils/events_modules.js';
@@ -84,20 +86,19 @@ filtersItems.forEach((filterItem) => {
       itemsSelected.appendChild(tagElement(filterItem.textContent, tagsArray));
       // TODO: Recherche selon le tag
       searchByTag(filterItem.textContent, filterItem.parentElement.getAttribute('id'));
+      recipesDisplayCounter();
+      errorMessageEmptyRecipes();
     }
   });
 });
+// TODO: Faire event sur la fermeture des tags
 
 // Main search bar
-const total = document.querySelector('#total');
 const mainSearch = document.querySelector('#search');
-const totalDOM = total.textContent;
-const errorDiv = document.querySelector('#error-message');
 mainSearch.addEventListener('input', () => {
-  total.textContent = totalDOM - DOMSearch(mainSearch.value);
-  if (totalDOM - DOMSearch(mainSearch.value) === 0) {
-    errorDiv.innerHTML = '<h3>Aucune recette trouvée</h3>';
-  } else { errorDiv.innerHTML = ''; }
+  DOMSearch(mainSearch.value);
+  recipesDisplayCounter();
+  errorMessageEmptyRecipes();
 });
 
 // Reset button of search bar
