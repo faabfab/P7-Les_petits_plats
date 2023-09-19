@@ -34,7 +34,6 @@ function thumbElement(image, name) {
   return a;
 }
 
-
 /**
  * Fonction qui affiche la liste des ingredients de la recette
  * @param {Array} ingredients tableau de ingredients
@@ -44,12 +43,12 @@ function ingredientListElement(ingredients) {
   const divIngredients = document.createElement('div');
   divIngredients.setAttribute('class', 'card_ingredients');
   ingredients.forEach((ingredient) => {
-    const pIgredients = document.createElement('p');
-    pIgredients.setAttribute('class', 'card_ingredient');
+    const pIngredients = document.createElement('p');
+    pIngredients.setAttribute('class', 'card_ingredient');
     const spanName = document.createElement('span');
     spanName.setAttribute('class', 'card_ingredient_name');
     spanName.textContent = ingredient.ingredient;
-    pIgredients.appendChild(spanName);
+    pIngredients.appendChild(spanName);
     const spanQuantity = document.createElement('span');
     spanQuantity.setAttribute('class', 'card_ingredient_quantity');
     if (ingredient.unit) {
@@ -57,8 +56,8 @@ function ingredientListElement(ingredients) {
     } else {
       spanQuantity.textContent = ingredient.quantity;
     }
-    pIgredients.appendChild(spanQuantity);
-    divIngredients.appendChild(pIgredients);
+    pIngredients.appendChild(spanQuantity);
+    divIngredients.appendChild(pIngredients);
   });
 
   return divIngredients;
@@ -102,7 +101,7 @@ function textContentElement(name, description, ingredients, appliance, ustensils
 
 /**
  * Fonction qui construit les cartes des recettes
- * @param {DOM element} element celui qui accueille les cartes des recettes
+ * @param {element} element celui qui accueille les cartes des recettes
  * @returns l'article de la recette
  */
 function elementDatas(element) {

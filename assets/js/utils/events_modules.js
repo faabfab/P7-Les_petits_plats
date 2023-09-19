@@ -5,6 +5,25 @@ function recipesCounter() {
   const articles = document.querySelectorAll('article');
   const totalSpan = document.querySelector('#total');
   totalSpan.textContent = articles.length;
+  return articles.length;
+}
+
+function recipesDisplayCounter() {
+  const articles = document.querySelectorAll('article');
+  const totalSpan = document.querySelector('#total');
+  let hiddenRecipes = 0;
+  let displayRecipes = 0;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const article of articles) {
+    article.classList.forEach((className) => {
+      if (className === 'hidden_div') {
+        hiddenRecipes += 1;
+      }
+    });
+  }
+  displayRecipes = recipesCounter() - hiddenRecipes;
+  console.log(displayRecipes);
+  totalSpan.textContent = displayRecipes;
 }
 
 function tagElement(name, tagsArray) {
@@ -53,4 +72,5 @@ export {
   tagElement,
   closeButtonSearchInput,
   resetSearchBar,
+  recipesDisplayCounter,
 };

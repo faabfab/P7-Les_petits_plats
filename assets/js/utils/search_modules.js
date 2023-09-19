@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import { recipesCounter } from './ModulesEvents.js';
+import { recipesDisplayCounter } from './events_modules.js';
 
 function getCards() {
   const cards = document.querySelector('#cards');
@@ -86,7 +86,7 @@ function searchInAppliance(tag, article) {
   const appliance = content.getAttribute('data-appliance');
   // si !tag et si visible
   if (tag !== appliance.toLowerCase()) {
-    console.log(appliance.toLowerCase());
+    // console.log(appliance.toLowerCase());
     article.classList.add('hidden_div');
   }
   //  alors invisible
@@ -120,7 +120,7 @@ function searchByTag(tag, filterName) {
         break;
     }
   }
-  recipesCounter();
+  recipesDisplayCounter();
 }
 
 export { DOMSearch, searchByTag };
