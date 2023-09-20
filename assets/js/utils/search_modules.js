@@ -38,12 +38,13 @@ function isInDataAttribute(value, dataAttribute, article) {
 function DOMSearch(value) {
   const articles = getCards();
   // BUG: eslint syntax
+  // TODO: Faire recherche si tags
+  // eslint-disable-next-line no-restricted-syntax
   // eslint-disable-next-line no-restricted-syntax
   for (const article of articles) {
+    // eslint-disable-next-line no-restricted-syntax, no-use-before-define
+    tagsSearch();
     if (value.length >= 3) {
-      // const h3 = article.querySelector('h3');
-      // const name = h3.textContent.toLowerCase();
-      // if (!name.includes(value)) {
       if (!isInElementT(value, 'h3', article)) {
         if (!isInElementT(value, '.card_content_description', article)) {
           if (!isInIngredients(value, article)) {
@@ -162,37 +163,30 @@ function whatFilter(name) {
   return filterName;
 }
 
-function displayRecipeAppliance(name, article) {
-  const content = article.querySelector('.card_content');
-  const appliance = content.getAttribute('data-appliance');
-  // TODO: Mettre un data attribute pour savoir si déja effacer avant
-  if ((name === appliance) && ) {
-    article.classList.remove('hidden_div');
+function tagsList() {
+  const tagsArray = [];
+  const tagsDiv = document.querySelectorAll('.item_selected');
+  tagsDiv.forEach((tag) => {
+    const p = tag.querySelector('p');
+    tagsArray.push(p.textContent);
+  });
+  return tagsArray;
+}
+
+function tagsSearch() {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const tagItem of tagsList()) {
+    searchByTag(tagItem, `${whatFilter(tagItem)}_list`);
   }
 }
 
-function displayRecipesTagRemove(name, filterName, article) {
-  switch (filterName) {
-    case 'ingredients':
-      console.log(`Ingredients ${name} dans ${filterName}`);
-      break;
-    case 'appliance':
-      displayRecipeAppliance(name, article);
-      break;
-    case 'ustensils':
-      console.log(`Ustensils ${name} dans ${filterName}`);
-      break;
-    default:
-      break;
-  }
-}
-
-function closeTagBtnDOMEvent(name) {
-  // Chercher où est name : ingredients, appliance, ustensils
-  // On fait le traitement suivant le cas
+function closeTagBtnDOMEvent() {
   const articles = document.querySelectorAll('article');
   articles.forEach((article) => {
-    displayRecipesTagRemove(name, whatFilter(name), article);
+    article.classList.remove('hidden_div');
+    const input = document.querySelector('#search');
+    DOMSearch(input.value);
+    tagsSearch();
   });
 }
 
@@ -200,4 +194,5 @@ export {
   DOMSearch,
   searchByTag,
   closeTagBtnDOMEvent,
+  tagsSearch,
 };

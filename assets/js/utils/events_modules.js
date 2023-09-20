@@ -1,5 +1,6 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
-import { closeTagBtnDOMEvent } from './search_modules.js';
+import { closeTagBtnDOMEvent, tagsSearch } from './search_modules.js';
 
 /**
  * Fonction qui renvoi le nombre total de recettes à l'écran
@@ -58,8 +59,9 @@ function tagElement(name, tagsArray) {
   divItemClose.addEventListener('click', () => {
     divItemClose.parentElement.remove();
     tagsArray.splice(tagsArray.indexOf(name), 1);
-    closeTagBtnDOMEvent(name);
+    closeTagBtnDOMEvent();
     recipesDisplayCounter();
+    errorMessageEmptyRecipes();
   });
   divItemSelected.appendChild(divItemClose);
   return divItemSelected;
@@ -84,7 +86,8 @@ function resetSearchBar() {
   const articles = document.querySelectorAll('article');
   articles.forEach((article) => {
     article.classList.remove('hidden_div');
-    recipesCounter();
+    tagsSearch();
+    recipesDisplayCounter();
   });
 }
 
