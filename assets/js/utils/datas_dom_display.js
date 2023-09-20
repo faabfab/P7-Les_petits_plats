@@ -189,7 +189,7 @@ function ustensilsArray(jsonConst) {
 }
 
 /**
- * 
+ * Fonction qui affiche la liste des tags
  * @param {Array} filterArray tableau de fil
  * @param {String} filter nom du filtre
  */

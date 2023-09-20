@@ -1,3 +1,6 @@
+/* eslint-disable import/extensions */
+import { closeTagBtnDOMEvent } from './search_modules.js';
+
 /**
  * Fonction qui renvoi le nombre total de recettes à l'écran
  */
@@ -8,6 +11,25 @@ function recipesCounter() {
   return articles.length;
 }
 
+function isHiddenRecipe(article) {
+  // eslint-disable-next-line no-restricted-syntax
+  // eslint-disable-next-line no-restricted-syntax
+  for (const className of article.classList) {
+    if (className === 'hidden_div') {
+      return true;
+    }
+  }
+  return false;
+}
+
+function errorMessageEmptyRecipes() {
+  const total = document.querySelector('#total');
+  const error = document.querySelector('#error-message');
+  if (total.textContent === '0') {
+    error.innerHTML = '<h3>Aucune recette trouvée</h3>';
+  } else { error.innerHTML = ''; }
+}
+
 function recipesDisplayCounter() {
   const articles = document.querySelectorAll('article');
   const totalSpan = document.querySelector('#total');
@@ -15,14 +37,11 @@ function recipesDisplayCounter() {
   let displayRecipes = 0;
   // eslint-disable-next-line no-restricted-syntax
   for (const article of articles) {
-    article.classList.forEach((className) => {
-      if (className === 'hidden_div') {
-        hiddenRecipes += 1;
-      }
-    });
+    if (isHiddenRecipe(article)) {
+      hiddenRecipes += 1;
+    }
   }
   displayRecipes = recipesCounter() - hiddenRecipes;
-  console.log(displayRecipes);
   totalSpan.textContent = displayRecipes;
 }
 
@@ -39,6 +58,8 @@ function tagElement(name, tagsArray) {
   divItemClose.addEventListener('click', () => {
     divItemClose.parentElement.remove();
     tagsArray.splice(tagsArray.indexOf(name), 1);
+    closeTagBtnDOMEvent(name);
+    recipesDisplayCounter();
   });
   divItemSelected.appendChild(divItemClose);
   return divItemSelected;
@@ -73,4 +94,5 @@ export {
   closeButtonSearchInput,
   resetSearchBar,
   recipesDisplayCounter,
+  errorMessageEmptyRecipes,
 };

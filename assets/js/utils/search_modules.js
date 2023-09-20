@@ -1,6 +1,3 @@
-/* eslint-disable import/extensions */
-import { recipesDisplayCounter } from './events_modules.js';
-
 function getCards() {
   const cards = document.querySelector('#cards');
   const articles = cards.querySelectorAll('article');
@@ -39,7 +36,6 @@ function isInDataAttribute(value, dataAttribute, article) {
 }
 
 function DOMSearch(value) {
-  let count = 0;
   const articles = getCards();
   // BUG: eslint syntax
   // eslint-disable-next-line no-restricted-syntax
@@ -54,7 +50,6 @@ function DOMSearch(value) {
             if (!isInDataAttribute(value, 'data-appliance', article)) {
               if (!isInDataAttribute(value, 'data-ustensils', article)) {
                 article.classList.add('hidden_div');
-                count += 1;
               } else {
                 article.classList.remove('hidden_div');
               }
@@ -74,7 +69,6 @@ function DOMSearch(value) {
       article.classList.remove('hidden_div');
     }
   }
-  return count;
 }
 
 // =============================================================================
@@ -84,17 +78,33 @@ function DOMSearch(value) {
 function searchInAppliance(tag, article) {
   const content = article.querySelector('.card_content');
   const appliance = content.getAttribute('data-appliance');
-  // si !tag et si visible
   if (tag !== appliance.toLowerCase()) {
-    // console.log(appliance.toLowerCase());
     article.classList.add('hidden_div');
   }
-  //  alors invisible
-  // sinon (tag) si invisible
-  //  alors visible
-  /*if (!(appliance.toLowerCase() === tag)) {
+}
+
+function searchInUstensils(tag, article) {
+  const divContent = article.querySelector('.card_content');
+  if (!divContent.getAttribute('data-ustensils').toLowerCase().includes(tag)) {
     article.classList.add('hidden_div');
-  } else { article.classList.remove('hidden_div'); }*/
+  }
+}
+
+function isIngredient(ingredients, tag) {
+  let ok = false;
+  ingredients.forEach((ingredient) => {
+    if (ingredient.textContent.toLowerCase() === tag.toLowerCase()) {
+      ok = true;
+    }
+  });
+  return ok;
+}
+
+function searchInIngredients(tag, article) {
+  const ingredients = article.querySelectorAll('.card_ingredient_name');
+  if (!isIngredient(ingredients, tag)) {
+    article.classList.add('hidden_div');
+  }
 }
 
 function searchByTag(tag, filterName) {
@@ -107,20 +117,87 @@ function searchByTag(tag, filterName) {
   for (const article of articles) {
     switch (filterName) {
       case 'ingredients':
-        //console.log(`rechercher ${tag} dans ingredients`);
+        searchInIngredients(tag, article);
         break;
       case 'appliance':
-        //console.log(`rechercher ${tag} dans appliance`);
         searchInAppliance(tag, article);
         break;
       case 'ustensils':
-        //console.log(`rechercher ${tag} dans ustensils`);
+        searchInUstensils(tag, article);
         break;
       default:
         break;
     }
   }
-  recipesDisplayCounter();
 }
 
-export { DOMSearch, searchByTag };
+function filterArray(filterName) {
+  const arrayTags = [];
+  const idFilter = `#${filterName}_list`;
+  const filterElements = document.querySelector(idFilter);
+  filterElements.childNodes.forEach((filterElement) => {
+    arrayTags.push(filterElement.textContent);
+  });
+  return arrayTags;
+}
+
+function tagInFilter(name, filterName) {
+  if (filterArray(filterName).includes(name)) {
+    return filterName;
+  }
+  return false;
+}
+
+function whatFilter(name) {
+  let filterName = '';
+  if (tagInFilter(name, 'ingredients')) {
+    filterName = tagInFilter(name, 'ingredients');
+  }
+  if (tagInFilter(name, 'appliance')) {
+    filterName = tagInFilter(name, 'appliance');
+  }
+  if (tagInFilter(name, 'ustensils')) {
+    filterName = tagInFilter(name, 'ustensils');
+  }
+  return filterName;
+}
+
+function displayRecipeAppliance(name, article) {
+  const content = article.querySelector('.card_content');
+  const appliance = content.getAttribute('data-appliance');
+  // TODO: Mettre un data attribute pour savoir si déja effacer avant
+  if ((name === appliance) && ) {
+    article.classList.remove('hidden_div');
+  }
+}
+
+function displayRecipesTagRemove(name, filterName, article) {
+  switch (filterName) {
+    case 'ingredients':
+      console.log(`Ingredients ${name} dans ${filterName}`);
+      break;
+    case 'appliance':
+      displayRecipeAppliance(name, article);
+      break;
+    case 'ustensils':
+      console.log(`Ustensils ${name} dans ${filterName}`);
+      break;
+    default:
+      break;
+  }
+}
+
+function closeTagBtnDOMEvent(name) {
+  // Chercher où est name : ingredients, appliance, ustensils
+  // On fait le traitement suivant le cas
+  const articles = document.querySelectorAll('article');
+  articles.forEach((article) => {
+    displayRecipesTagRemove(name, whatFilter(name), article);
+  });
+}
+
+export {
+  DOMSearch,
+  searchByTag,
+  closeTagBtnDOMEvent,
+};

@@ -92,6 +92,13 @@ filtersItems.forEach((filterItem) => {
   });
 });
 // TODO: Faire event sur la fermeture des tags
+// Close buttons
+/*const tagSelectedCloseButtons = document.querySelectorAll('.item_selected_close');
+tagSelectedCloseButtons.forEach((tagSelectedCloseButton) => {
+  tagSelectedCloseButton.addEventListener('click', () => {
+    console.log('close close');
+  });
+});*/
 
 // Main search bar
 const mainSearch = document.querySelector('#search');
