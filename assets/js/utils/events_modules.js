@@ -91,6 +91,14 @@ function resetSearchBar() {
   });
 }
 
+function filterInputEvent(filterName) {
+  const filterInput = document.querySelector(`#${filterName}_search_input`);
+  filterInput.addEventListener('input', () => {
+    // TODO: Faire traitements sur les tableaux
+    console.log(filterInput.value);
+  });
+}
+
 export {
   recipesCounter,
   tagElement,
@@ -98,4 +106,5 @@ export {
   resetSearchBar,
   recipesDisplayCounter,
   errorMessageEmptyRecipes,
+  filterInputEvent,
 };

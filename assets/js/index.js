@@ -6,6 +6,7 @@ import { recipes } from '../data/recipes.js';
 import {
   closeButtonSearchInput,
   errorMessageEmptyRecipes,
+  filterInputEvent,
   recipesCounter,
   recipesDisplayCounter,
   resetSearchBar,
@@ -93,6 +94,11 @@ filtersItems.forEach((filterItem) => {
 });
 
 // TODO: Faire event sur la fermeture des tags
+
+// input filter event
+filterInputEvent('ingredients');
+filterInputEvent('appliance');
+filterInputEvent('ustensils');
 
 // Main search bar
 const mainSearch = document.querySelector('#search');
