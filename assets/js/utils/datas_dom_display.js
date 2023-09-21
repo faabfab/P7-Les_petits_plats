@@ -68,6 +68,8 @@ function ingredientListElement(ingredients) {
  * @param {String} name nom de la recette
  * @param {String} description description de la recette
  * @param {Array} ingredients de la recette
+ * @param {Array} appliance de la recette
+ * @param {Array} ustensils de la recette
  * @returns text content DOM element
  */
 function textContentElement(name, description, ingredients, appliance, ustensils) {
@@ -101,7 +103,7 @@ function textContentElement(name, description, ingredients, appliance, ustensils
 
 /**
  * Fonction qui construit les cartes des recettes
- * @param {element} element celui qui accueille les cartes des recettes
+ * @param {Element} element celui qui accueille les cartes des recettes
  * @returns l'article de la recette
  */
 function elementDatas(element) {

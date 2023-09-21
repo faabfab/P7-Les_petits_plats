@@ -1,9 +1,12 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
+// =============================================================================
+// Imports
+// =============================================================================
 import { closeTagBtnDOMEvent, tagsSearch } from './search_modules.js';
 
 /**
- * Fonction qui renvoi le nombre total de recettes à l'écran
+ * Fonction qui renvoi le nombre total de recettes du DOM
  */
 function recipesCounter() {
   const articles = document.querySelectorAll('article');
@@ -12,6 +15,11 @@ function recipesCounter() {
   return articles.length;
 }
 
+/**
+ * Fonction qui retourne vrai si l'article est affichée
+ * @param {Element} article element à tester
+ * @returns boolean
+ */
 function isHiddenRecipe(article) {
   // eslint-disable-next-line no-restricted-syntax
   // eslint-disable-next-line no-restricted-syntax
@@ -23,6 +31,9 @@ function isHiddenRecipe(article) {
   return false;
 }
 
+/**
+ * Fonction qui affiche un message d'erreur si il n'y a pas d'éléments trouvés
+ */
 function errorMessageEmptyRecipes() {
   const total = document.querySelector('#total');
   const error = document.querySelector('#error-message');
@@ -31,6 +42,9 @@ function errorMessageEmptyRecipes() {
   } else { error.innerHTML = ''; }
 }
 
+/**
+ * Fonction qui affiche le nombre de résultats trouvés
+ */
 function recipesDisplayCounter() {
   const articles = document.querySelectorAll('article');
   const totalSpan = document.querySelector('#total');
@@ -46,6 +60,12 @@ function recipesDisplayCounter() {
   totalSpan.textContent = displayRecipes;
 }
 
+/**
+ * Fonction qui retourne l'élément à afficher quand un tag est sélectionné
+ * @param {String} name nom du tag dans la listStyle
+ * @param {Array} tagsArray liste des tags
+ * @returns l'élément à afficher
+ */
 function tagElement(name, tagsArray) {
   const divItemSelected = document.createElement('div');
   divItemSelected.setAttribute('class', 'item_selected');
@@ -67,6 +87,11 @@ function tagElement(name, tagsArray) {
   return divItemSelected;
 }
 
+/**
+ * Fonction qui affiche ou efface le bouton reset
+ * @param {Element} input champ de recherche
+ * @param {Element} closeButton Button
+ */
 function closeButtonSearchInput(input, closeButton) {
   const search = document.querySelector(input);
   const reset = document.querySelector(closeButton);
@@ -82,6 +107,9 @@ function closeButtonSearchInput(input, closeButton) {
   };
 }
 
+/**
+ * Fonction qui affiche les articles quand on supprime les caractères de la barre de recherche
+ */
 function resetSearchBar() {
   const articles = document.querySelectorAll('article');
   articles.forEach((article) => {
@@ -91,14 +119,47 @@ function resetSearchBar() {
   });
 }
 
+/**
+ * Fonction qui détermine les événements sur les inputs des filtres
+ * @param {String} filterName nom du filter
+ */
 function filterInputEvent(filterName) {
   const filterInput = document.querySelector(`#${filterName}_search_input`);
   filterInput.addEventListener('input', () => {
     // TODO: Faire traitements sur les tableaux
-    console.log(filterInput.value);
+    const filterList = document.querySelector(`#${filterName}_list`);
+    const filterItems = filterList.querySelectorAll('li');
+    if (filterInput.value.length >= 3) {
+      // console.log(filterInput.value);
+      filterItems.forEach((filterItem) => {
+        if (filterItem.textContent.toLowerCase().includes(filterInput.value.toLowerCase())) {
+          filterItem.removeAttribute('class');
+        } else {
+          filterItem.setAttribute('class', 'hidden_div');
+        }
+      });
+    } else {
+      filterItems.forEach((filterItem) => {
+        filterItem.removeAttribute('class');
+      });
+    }
   });
 }
 
+/**
+ * Fonction qui affiche la liste complète des tags quand l'input correspondant est vide
+ */
+function filterResetInput() {
+  const parent = (this.parentElement).parentElement;
+  const items = parent.querySelectorAll('li');
+  items.forEach((item) => {
+    item.removeAttribute('class');
+  });
+}
+
+// =============================================================================
+// Exports
+// =============================================================================
 export {
   recipesCounter,
   tagElement,
@@ -107,4 +168,5 @@ export {
   recipesDisplayCounter,
   errorMessageEmptyRecipes,
   filterInputEvent,
+  filterResetInput,
 };

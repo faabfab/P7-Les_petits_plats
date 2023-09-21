@@ -7,6 +7,7 @@ import {
   closeButtonSearchInput,
   errorMessageEmptyRecipes,
   filterInputEvent,
+  filterResetInput,
   recipesCounter,
   recipesDisplayCounter,
   resetSearchBar,
@@ -37,6 +38,11 @@ function init() {
   // Events on DOM
   // Input principal
   closeButtonSearchInput('#search', '#search_reset');
+  // loop button
+  const searchButton = document.querySelector('#search_button');
+  searchButton.addEventListener('click', (e) => {
+    e.preventDefault();
+  });
 
   // Filters
   // TODO: Événements sur les filtres
@@ -62,6 +68,14 @@ function init() {
   closeButtonSearchInput('#ingredients_search_input', '#ingredients_btn_reset');
   closeButtonSearchInput('#appliance_search_input', '#appliance_btn_reset');
   closeButtonSearchInput('#ustensils_search_input', '#ustensils_btn_reset');
+
+  // loop buttons
+  const filterSearchButtons = document.querySelectorAll('.filter_btn_submit');
+  filterSearchButtons.forEach((filterSearchButton) => {
+    filterSearchButton.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  });
 
   // total recipes
   recipesCounter();
@@ -112,4 +126,10 @@ mainSearch.addEventListener('input', () => {
 const btResetSearchBar = document.querySelector('#search_reset');
 btResetSearchBar.addEventListener('click', resetSearchBar);
 
-// TODO: Résultats sur la loupe
+// Reset buttons filter search events
+const filterResetButtons = document.querySelectorAll('.filter_btn_reset');
+filterResetButtons.forEach((filterResetButton) => {
+  filterResetButton.addEventListener('click', filterResetInput);
+});
+
+// FIXME: Résultats sur la loupe

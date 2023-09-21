@@ -33,7 +33,11 @@
 import { recipes } from '../data/recipes.js';
 import {
   closeButtonSearchInput,
+  errorMessageEmptyRecipes,
+  filterInputEvent,
+  filterResetInput,
   recipesCounter,
+  recipesDisplayCounter,
   resetSearchBar,
   tagElement,
 } from './utils/events_modules.js';
@@ -62,6 +66,11 @@ function init() {
   // Events on DOM
   // Input principal
   closeButtonSearchInput('#search', '#search_reset');
+  // loop button
+  const searchButton = document.querySelector('#search_button');
+  searchButton.addEventListener('click', (e) => {
+    e.preventDefault();
+  });
 
   // Filters
   // TODO: Événements sur les filtres
@@ -88,6 +97,14 @@ function init() {
   closeButtonSearchInput('#appliance_search_input', '#appliance_btn_reset');
   closeButtonSearchInput('#ustensils_search_input', '#ustensils_btn_reset');
 
+  // loop buttons
+  const filterSearchButtons = document.querySelectorAll('.filter_btn_submit');
+  filterSearchButtons.forEach((filterSearchButton) => {
+    filterSearchButton.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  });
+
   // total recipes
   recipesCounter();
 }
@@ -112,27 +129,38 @@ filtersItems.forEach((filterItem) => {
       itemsSelected.appendChild(tagElement(filterItem.textContent, tagsArray));
       // TODO: Recherche selon le tag
       searchByTag(filterItem.textContent, filterItem.parentElement.getAttribute('id'));
+      recipesDisplayCounter();
+      errorMessageEmptyRecipes();
     }
   });
 });
 
+// TODO: Faire event sur la fermeture des tags
+
+// input filter event
+filterInputEvent('ingredients');
+filterInputEvent('appliance');
+filterInputEvent('ustensils');
+
 // Main search bar
-const total = document.querySelector('#total');
 const mainSearch = document.querySelector('#search');
-const totalDOM = total.textContent;
-const errorDiv = document.querySelector('#error-message');
 mainSearch.addEventListener('input', () => {
-  total.textContent = totalDOM - DOMSearch(mainSearch.value);
-  if (totalDOM - DOMSearch(mainSearch.value) === 0) {
-    errorDiv.innerHTML = '&lt;h3>Aucune recette trouvée&lt;/h3>';
-  } else { errorDiv.innerHTML = ''; }
+  DOMSearch(mainSearch.value);
+  recipesDisplayCounter();
+  errorMessageEmptyRecipes();
 });
 
 // Reset button of search bar
 const btResetSearchBar = document.querySelector('#search_reset');
 btResetSearchBar.addEventListener('click', resetSearchBar);
 
-// TODO: Résultats sur la loupe
+// Reset buttons filter search events
+const filterResetButtons = document.querySelectorAll('.filter_btn_reset');
+filterResetButtons.forEach((filterResetButton) => {
+  filterResetButton.addEventListener('click', filterResetInput);
+});
+
+// FIXME: Résultats sur la loupe
 </code></pre>
         </article>
     </section>
@@ -143,13 +171,13 @@ btResetSearchBar.addEventListener('click', resetSearchBar);
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#recipesCounter">recipesCounter</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesCounter">recipesCounter</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Sep 19 2023 10:56:50 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Sep 21 2023 16:47:37 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>
