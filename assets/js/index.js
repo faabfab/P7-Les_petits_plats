@@ -45,7 +45,7 @@ function init() {
   });
 
   // Filters
-  // TODO: Événements sur les filtres
+  // FIXME: Événements sur les filtres
   // Tags
   const filters = document.querySelectorAll('.filter');
   filters.forEach((filter) => {
@@ -99,7 +99,7 @@ filtersItems.forEach((filterItem) => {
   filterItem.addEventListener('click', () => {
     if (!tagsArray.includes(filterItem.textContent)) {
       itemsSelected.appendChild(tagElement(filterItem.textContent, tagsArray));
-      // TODO: Recherche selon le tag
+      // FIXME: Recherche selon le tag
       searchByTag(filterItem.textContent, filterItem.parentElement.getAttribute('id'));
       recipesDisplayCounter();
       errorMessageEmptyRecipes();
@@ -107,7 +107,7 @@ filtersItems.forEach((filterItem) => {
   });
 });
 
-// TODO: Faire event sur la fermeture des tags
+// FIXME: Faire event sur la fermeture des tags
 
 // input filter event
 filterInputEvent('ingredients');
