@@ -66,7 +66,6 @@ function isInDataAttribute(value, dataAttribute, article) {
 function DOMSearch(value) {
   const articles = getCards();
   // BUG: eslint syntax
-  // FIXME: Faire recherche si tags
   // eslint-disable-next-line no-restricted-syntax
   // eslint-disable-next-line no-restricted-syntax
   for (const article of articles) {

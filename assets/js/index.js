@@ -45,7 +45,6 @@ function init() {
   });
 
   // Filters
-  // FIXME: Événements sur les filtres
   // Tags
   const filters = document.querySelectorAll('.filter');
   filters.forEach((filter) => {
@@ -99,15 +98,12 @@ filtersItems.forEach((filterItem) => {
   filterItem.addEventListener('click', () => {
     if (!tagsArray.includes(filterItem.textContent)) {
       itemsSelected.appendChild(tagElement(filterItem.textContent, tagsArray));
-      // FIXME: Recherche selon le tag
       searchByTag(filterItem.textContent, filterItem.parentElement.getAttribute('id'));
       recipesDisplayCounter();
       errorMessageEmptyRecipes();
     }
   });
 });
-
-// FIXME: Faire event sur la fermeture des tags
 
 // input filter event
 filterInputEvent('ingredients');
@@ -131,5 +127,3 @@ const filterResetButtons = document.querySelectorAll('.filter_btn_reset');
 filterResetButtons.forEach((filterResetButton) => {
   filterResetButton.addEventListener('click', filterResetInput);
 });
-
-// FIXME: Résultats sur la loupe

@@ -126,7 +126,6 @@ function resetSearchBar() {
 function filterInputEvent(filterName) {
   const filterInput = document.querySelector(`#${filterName}_search_input`);
   filterInput.addEventListener('input', () => {
-    // FIXME: Faire traitements sur les tableaux
     const filterList = document.querySelector(`#${filterName}_list`);
     const filterItems = filterList.querySelectorAll('li');
     if (filterInput.value.length >= 3) {
