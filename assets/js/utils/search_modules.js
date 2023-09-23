@@ -65,8 +65,7 @@ function isInDataAttribute(value, dataAttribute, article) {
  */
 function DOMSearch(value) {
   const articles = getCards();
-  // BUG: eslint syntax
-  // eslint-disable-next-line no-restricted-syntax
+  // BUG: eslint synta
   // eslint-disable-next-line no-restricted-syntax
   for (const article of articles) {
     // eslint-disable-next-line no-restricted-syntax, no-use-before-define

@@ -2702,6 +2702,12 @@ main #filters_section{
   justify-content: space-between;
 }
 
+#error-message{
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+
 /* Pages */
 
 header{

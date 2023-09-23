@@ -51,6 +51,7 @@ function init() {
     const filterListBtn = filter.querySelector('.filter_list_btn');
     const filterListState = filter.querySelector('.filter_list_state');
     const filterListContent = filter.querySelector('.filter_list_content');
+    
     filterListBtn.addEventListener('click', () => {
       if (filter.getAttribute('data-state') === 'close') {
         filterListState.innerHTML = '<img src="/assets/img/list_close.svg" alt="list close"></img>';
