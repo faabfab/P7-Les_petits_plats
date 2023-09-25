@@ -12,7 +12,7 @@ import {
   recipesDisplayCounter,
   resetSearchBar,
   tagElement,
-} from './utils/events_modules.js';
+} from './utils/events.js';
 
 import {
   applianceArray,
@@ -22,7 +22,7 @@ import {
   ustensilsArray,
 } from './utils/datas_dom_display.js';
 
-import { DOMSearch, searchByTag } from './utils/search_modules.js';
+import { DOMSearch, searchByTag } from './utils/search.js';
 
 /**
  * Fonction d'initialisation du DOM
@@ -51,7 +51,7 @@ function init() {
     const filterListBtn = filter.querySelector('.filter_list_btn');
     const filterListState = filter.querySelector('.filter_list_state');
     const filterListContent = filter.querySelector('.filter_list_content');
-    
+
     filterListBtn.addEventListener('click', () => {
       if (filter.getAttribute('data-state') === 'close') {
         filterListState.innerHTML = '<img src="/assets/img/list_close.svg" alt="list close"></img>';
@@ -112,6 +112,7 @@ filterInputEvent('appliance');
 filterInputEvent('ustensils');
 
 // Main search bar
+// TODO: bug quand on efface revient pas
 const mainSearch = document.querySelector('#search');
 mainSearch.addEventListener('input', () => {
   DOMSearch(mainSearch.value);

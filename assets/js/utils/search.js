@@ -65,30 +65,19 @@ function isInDataAttribute(value, dataAttribute, article) {
  */
 function DOMSearch(value) {
   const articles = getCards();
-  // BUG: eslint synta
+  // BUG: eslint syntax
   // eslint-disable-next-line no-restricted-syntax
   for (const article of articles) {
-    // eslint-disable-next-line no-restricted-syntax, no-use-before-define
+    // eslint-disable-next-line no-use-before-define
     tagsSearch();
     if (value.length >= 3) {
-      if (!isInElementT(value, 'h3', article)) {
-        if (!isInElementT(value, '.card_content_description', article)) {
-          if (!isInIngredients(value, article)) {
-            if (!isInDataAttribute(value, 'data-appliance', article)) {
-              if (!isInDataAttribute(value, 'data-ustensils', article)) {
-                article.classList.add('hidden_div');
-              } else {
-                article.classList.remove('hidden_div');
-              }
-            } else {
-              article.classList.remove('hidden_div');
-            }
-          } else {
-            article.classList.remove('hidden_div');
-          }
-        } else {
-          article.classList.remove('hidden_div');
-        }
+      if (!isInElementT(value, 'h3', article)
+          && !isInElementT(value, '.card_content_description', article)
+          && !isInIngredients(value, article)
+          && !isInDataAttribute(value, 'data-appliance', article)
+          && !isInDataAttribute(value, 'data-ustensils', article)
+      ) {
+        article.classList.add('hidden_div');
       } else {
         article.classList.remove('hidden_div');
       }

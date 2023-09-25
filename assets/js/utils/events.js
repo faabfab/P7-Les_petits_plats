@@ -3,7 +3,7 @@
 // =============================================================================
 // Imports
 // =============================================================================
-import { closeTagBtnDOMEvent, tagsSearch } from './search_modules.js';
+import { closeTagBtnDOMEvent, tagsSearch } from './search.js';
 
 /**
  * Fonction qui renvoi le nombre total de recettes du DOM
