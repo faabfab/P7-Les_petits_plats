@@ -15,11 +15,11 @@ function elementTime(time) {
 }
 
 /**
- * Fonction qui affiche la vignette de la recette
- * @param {String} image image name
- * @param {String} name recipe name
- * @returns image DOM element
- */
+   * Fonction qui affiche la vignette de la recette
+   * @param {String} image image name
+   * @param {String} name recipe name
+   * @returns image DOM element
+   */
 function thumbElement(image, name) {
   const a = document.createElement('a');
   a.setAttribute('href', '#');
@@ -35,10 +35,10 @@ function thumbElement(image, name) {
 }
 
 /**
- * Fonction qui affiche la liste des ingredients de la recette
- * @param {Array} ingredients tableau de ingredients
- * @returns ingredients DOM element
- */
+   * Fonction qui affiche la liste des ingredients de la recette
+   * @param {Array} ingredients tableau de ingredients
+   * @returns ingredients DOM element
+   */
 function ingredientListElement(ingredients) {
   const divIngredients = document.createElement('div');
   divIngredients.setAttribute('class', 'card_ingredients');
@@ -64,14 +64,14 @@ function ingredientListElement(ingredients) {
 }
 
 /**
- * Fonction qui affiche la partie texte de la recette
- * @param {String} name nom de la recette
- * @param {String} description description de la recette
- * @param {Array} ingredients de la recette
- * @param {Array} appliance de la recette
- * @param {Array} ustensils de la recette
- * @returns text content DOM element
- */
+   * Fonction qui affiche la partie texte de la recette
+   * @param {String} name nom de la recette
+   * @param {String} description description de la recette
+   * @param {Array} ingredients de la recette
+   * @param {Array} appliance de la recette
+   * @param {Array} ustensils de la recette
+   * @returns text content DOM element
+   */
 function textContentElement(name, description, ingredients, appliance, ustensils) {
   const div = document.createElement('div');
   div.setAttribute('class', 'card_content');
@@ -102,10 +102,10 @@ function textContentElement(name, description, ingredients, appliance, ustensils
 }
 
 /**
- * Fonction qui construit les cartes des recettes
- * @param {Element} element celui qui accueille les cartes des recettes
- * @returns l'article de la recette
- */
+   * Fonction qui construit les cartes des recettes
+   * @param {Element} element celui qui accueille les cartes des recettes
+   * @returns l'article de la recette
+   */
 function elementDatas(element) {
   // article
   const article = document.createElement('article');
@@ -127,9 +127,9 @@ function elementDatas(element) {
 }
 
 /**
- * Affiche les recettes dans le DOM
- * @param {Array} jsonConst tableau des recettes
- */
+   * Affiche les recettes dans le DOM
+   * @param {Array} jsonConst tableau des recettes
+   */
 async function getCards(jsonConst) {
   const cards = document.querySelector('#cards');
   jsonConst.forEach((element) => {
@@ -137,82 +137,4 @@ async function getCards(jsonConst) {
   });
 }
 
-// =============================================================================
-// FILTERS
-// =============================================================================
-
-/**
- * Fonction qui retourne le tableau des ingrédients sans redondances
- * @param {Array} jsonConst tableau des recettes
- * @returns Array
- */
-function ingredientsArray(jsonConst) {
-  const ingredientsList = [];
-  jsonConst.forEach((element) => {
-    element.ingredients.forEach((el) => {
-      if (!(ingredientsList.includes(el.ingredient))) {
-        ingredientsList.push(el.ingredient);
-      }
-    });
-  });
-  return ingredientsList;
-}
-
-/**
- * Fonction qui retourne le tableau des appareils sans redondances
- * @param {Array} jsonConst tableau des recettes
- * @returns Array
- */
-function applianceArray(jsonConst) {
-  const applianceList = [];
-  jsonConst.forEach((element) => {
-    if (!applianceList.includes(element.appliance)) {
-      applianceList.push(element.appliance);
-    }
-  });
-  return applianceList;
-}
-
-/**
- * Fonction qui retourne le tableau des ustensiles sans redondances
- * @param {Array} jsonConst tableau des recettes
- * @returns Array
- */
-function ustensilsArray(jsonConst) {
-  const ustensilsList = [];
-  jsonConst.forEach((element) => {
-    element.ustensils.forEach((el) => {
-      if (!ustensilsList.includes(el)) {
-        ustensilsList.push(el);
-      }
-    });
-  });
-  return ustensilsList;
-}
-
-/**
- * Fonction qui affiche la liste des tags
- * @param {Array} filterArray tableau de fil
- * @param {String} filter nom du filtre
- */
-function getFilterElements(filterArray, filter) {
-  const idFilter = `#${filter}_list`;
-  const ingredientsList = document.querySelector(idFilter);
-  filterArray.forEach((element) => {
-    const li = document.createElement('li');
-    li.textContent = element;
-    ingredientsList.appendChild(li);
-  });
-}
-
-// =============================================================================
-// EXPORTS
-// =============================================================================
-
-export {
-  getCards,
-  ingredientsArray,
-  applianceArray,
-  ustensilsArray,
-  getFilterElements,
-};
+export default getCards;

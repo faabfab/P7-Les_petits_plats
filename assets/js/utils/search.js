@@ -1,8 +1,15 @@
+/* eslint-disable import/extensions */
+// =============================================================================
+// Imports
+// =============================================================================
+// eslint-disable-next-line import/no-cycle
+import { tagsList, whatFilter } from '../components/tags.js';
+
 /**
  * Fonction qui retourne l'élément qu DOM qui contient tous les articles
  * @returns L'élément que contient tous les articles
  */
-function getCards() {
+function getArticles() {
   const cards = document.querySelector('#cards');
   const articles = cards.querySelectorAll('article');
   return articles;
@@ -64,7 +71,7 @@ function isInDataAttribute(value, dataAttribute, article) {
  * @param {String} value valeur à tester
  */
 function DOMSearch(value) {
-  const articles = getCards();
+  const articles = getArticles();
   // BUG: eslint syntax
   // eslint-disable-next-line no-restricted-syntax
   for (const article of articles) {
@@ -148,7 +155,7 @@ function searchByTag(tag, filterName) {
   filterName = filterName.slice(0, filterName.length - 5);
   // eslint-disable-next-line no-param-reassign
   tag = tag.toLowerCase();
-  const articles = getCards();
+  const articles = getArticles();
   // eslint-disable-next-line no-restricted-syntax
   for (const article of articles) {
     switch (filterName) {
@@ -165,67 +172,6 @@ function searchByTag(tag, filterName) {
         break;
     }
   }
-}
-
-/**
- * Fonction qui renvoi le tableau des tags du filtre correspondant
- * @param {String} filterName nom du filtre
- * @returns Tableau des tags du filter
- */
-function filterArray(filterName) {
-  const arrayTags = [];
-  const idFilter = `#${filterName}_list`;
-  const filterElements = document.querySelector(idFilter);
-  filterElements.childNodes.forEach((filterElement) => {
-    arrayTags.push(filterElement.textContent);
-  });
-  return arrayTags;
-}
-
-/**
- * Fonction qui retourne le nom du filtre si name en fait partie faux sinon
- * @param {String} name nom à tester
- * @param {String} filterName nom du filtre
- * @returns filterName or false
- */
-function tagInFilter(name, filterName) {
-  if (filterArray(filterName).includes(name)) {
-    return filterName;
-  }
-  return false;
-}
-
-/**
- * Fonction qui retourne le nom du filtre auquel name appartient
- * @param {String} name nom du tag
- * @returns {String} nom de filtre
- */
-function whatFilter(name) {
-  let filterName = '';
-  if (tagInFilter(name, 'ingredients')) {
-    filterName = tagInFilter(name, 'ingredients');
-  }
-  if (tagInFilter(name, 'appliance')) {
-    filterName = tagInFilter(name, 'appliance');
-  }
-  if (tagInFilter(name, 'ustensils')) {
-    filterName = tagInFilter(name, 'ustensils');
-  }
-  return filterName;
-}
-
-/**
- * Fonction qui retourne le tableau des tags sélectionnés
- * @returns {Array}
- */
-function tagsList() {
-  const tagsArray = [];
-  const tagsDiv = document.querySelectorAll('.item_selected');
-  tagsDiv.forEach((tag) => {
-    const p = tag.querySelector('p');
-    tagsArray.push(p.textContent);
-  });
-  return tagsArray;
 }
 
 /**

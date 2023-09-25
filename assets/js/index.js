@@ -3,24 +3,25 @@
 // IMPORTS
 // =============================================================================
 import { recipes } from '../data/recipes.js';
-import {
-  closeButtonSearchInput,
-  errorMessageEmptyRecipes,
-  filterInputEvent,
-  filterResetInput,
-  recipesCounter,
-  recipesDisplayCounter,
-  resetSearchBar,
-  tagElement,
-} from './utils/events.js';
+
+import errorMessageEmptyRecipes from './utils/error.js';
+
+import { closeButtonSearchInput, resetSearchBar } from './components/search_bar.js';
+
+import { tagElement } from './components/tags.js';
 
 import {
   applianceArray,
-  getCards,
   getFilterElements,
   ingredientsArray,
   ustensilsArray,
-} from './utils/datas_dom_display.js';
+  filterInputEvent,
+  filterResetInput,
+} from './components/filters.js';
+
+import getCards from './components/cards.js';
+
+import { recipesCounter, recipesDisplayCounter } from './components/counter.js';
 
 import { DOMSearch, searchByTag } from './utils/search.js';
 
@@ -112,7 +113,7 @@ filterInputEvent('appliance');
 filterInputEvent('ustensils');
 
 // Main search bar
-// TODO: bug quand on efface revient pas
+// FIXME: bug quand on efface revient pas
 const mainSearch = document.querySelector('#search');
 mainSearch.addEventListener('input', () => {
   DOMSearch(mainSearch.value);
