@@ -2408,6 +2408,10 @@ button{
   cursor: pointer;
 }
 
+.filter_search label{
+  display: none;
+}
+
 .filter_search_input::-webkit-search-cancel-button{
   -webkit-appearance: none;
   content: url();
@@ -2420,7 +2424,6 @@ button{
 }
 
 .filter_btn_submit{
-  width: 20px;
   padding: 0px;
 }
 
@@ -2641,6 +2644,10 @@ header .search_bar input[type='search']::-webkit-search-cancel-button{
   -webkit-appearance: none;
   content: url();
   cursor: pointer;
+}
+
+header .search_bar label{
+  display: none;
 }
 
 header .search_bar button[type='submit']{

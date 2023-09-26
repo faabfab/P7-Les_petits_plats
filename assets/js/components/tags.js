@@ -1,5 +1,3 @@
-/* eslint-disable import/extensions */
-
 // =============================================================================
 // Imports
 // =============================================================================
@@ -74,10 +72,10 @@ function whatFilter(name) {
 function tagsList() {
   const tagsArray = [];
   const tagsDiv = document.querySelectorAll('.item_selected');
-  tagsDiv.forEach((tag) => {
+  for (const tag of tagsDiv) {
     const p = tag.querySelector('p');
     tagsArray.push(p.textContent);
-  });
+  }
   return tagsArray;
 }
 // =============================================================================

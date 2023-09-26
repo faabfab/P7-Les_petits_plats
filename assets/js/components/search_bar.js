@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 // =============================================================================
 // Imports
 // =============================================================================
@@ -30,11 +29,11 @@ function closeButtonSearchInput(input, closeButton) {
    */
 function resetSearchBar() {
   const articles = document.querySelectorAll('article');
-  articles.forEach((article) => {
+  for (const article of articles) {
     article.classList.remove('hidden_div');
     tagsSearch();
     recipesDisplayCounter();
-  });
+  }
 }
 
 // =============================================================================

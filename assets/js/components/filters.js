@@ -9,13 +9,13 @@
  */
 function ingredientsArray(jsonConst) {
   const ingredientsList = [];
-  jsonConst.forEach((element) => {
-    element.ingredients.forEach((el) => {
+  for (const element of jsonConst) {
+    for (const el of element.ingredients) {
       if (!(ingredientsList.includes(el.ingredient))) {
         ingredientsList.push(el.ingredient);
       }
-    });
-  });
+    }
+  }
   return ingredientsList;
 }
 
@@ -26,11 +26,11 @@ function ingredientsArray(jsonConst) {
    */
 function applianceArray(jsonConst) {
   const applianceList = [];
-  jsonConst.forEach((element) => {
+  for (const element of jsonConst) {
     if (!applianceList.includes(element.appliance)) {
       applianceList.push(element.appliance);
     }
-  });
+  }
   return applianceList;
 }
 
@@ -41,13 +41,13 @@ function applianceArray(jsonConst) {
    */
 function ustensilsArray(jsonConst) {
   const ustensilsList = [];
-  jsonConst.forEach((element) => {
-    element.ustensils.forEach((el) => {
+  for (const element of jsonConst) {
+    for (const el of element.ustensils) {
       if (!ustensilsList.includes(el)) {
         ustensilsList.push(el);
       }
-    });
-  });
+    }
+  }
   return ustensilsList;
 }
 
@@ -60,9 +60,9 @@ function filterArray(filterName) {
   const arrayTags = [];
   const idFilter = `#${filterName}_list`;
   const filterElements = document.querySelector(idFilter);
-  filterElements.childNodes.forEach((filterElement) => {
+  for (const filterElement of filterElements.childNodes) {
     arrayTags.push(filterElement.textContent);
-  });
+  }
   return arrayTags;
 }
 
@@ -74,11 +74,11 @@ function filterArray(filterName) {
 function getFilterElements(arrayOfFilter, filter) {
   const idFilter = `#${filter}_list`;
   const ingredientsList = document.querySelector(idFilter);
-  arrayOfFilter.forEach((element) => {
+  for (const element of arrayOfFilter) {
     const li = document.createElement('li');
     li.textContent = element;
     ingredientsList.appendChild(li);
-  });
+  }
 }
 
 /**
@@ -91,18 +91,17 @@ function filterInputEvent(filterName) {
     const filterList = document.querySelector(`#${filterName}_list`);
     const filterItems = filterList.querySelectorAll('li');
     if (filterInput.value.length >= 3) {
-      // console.log(filterInput.value);
-      filterItems.forEach((filterItem) => {
+      for (const filterItem of filterItems) {
         if (filterItem.textContent.toLowerCase().includes(filterInput.value.toLowerCase())) {
           filterItem.removeAttribute('class');
         } else {
           filterItem.setAttribute('class', 'hidden_div');
         }
-      });
+      }
     } else {
-      filterItems.forEach((filterItem) => {
+      for (const filterItem of filterItems) {
         filterItem.removeAttribute('class');
-      });
+      }
     }
   });
 }
@@ -113,9 +112,9 @@ function filterInputEvent(filterName) {
 function filterResetInput() {
   const parent = (this.parentElement).parentElement;
   const items = parent.querySelectorAll('li');
-  items.forEach((item) => {
+  for (const item of items) {
     item.removeAttribute('class');
-  });
+  }
 }
 
 // =============================================================================

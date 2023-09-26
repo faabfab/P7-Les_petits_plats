@@ -1,8 +1,6 @@
-/* eslint-disable import/extensions */
 // =============================================================================
 // Imports
 // =============================================================================
-// eslint-disable-next-line import/no-cycle
 import { tagsList, whatFilter } from '../components/tags.js';
 
 /**
@@ -39,10 +37,8 @@ function isInElementT(value, DOMElement, article) {
  */
 function isInIngredients(value, article) {
   const ingredientsName = article.querySelectorAll('.card_ingredient_name');
-  // eslint-disable-next-line no-restricted-syntax
   for (const ingredientName of ingredientsName) {
     const ingredient = ingredientName.textContent.toLowerCase();
-    // console.log(ingredient);
     if (ingredient.includes(value)) {
       return true;
     }
@@ -72,10 +68,7 @@ function isInDataAttribute(value, dataAttribute, article) {
  */
 function DOMSearch(value) {
   const articles = getArticles();
-  // BUG: eslint syntax
-  // eslint-disable-next-line no-restricted-syntax
   for (const article of articles) {
-    // eslint-disable-next-line no-use-before-define
     tagsSearch();
     if (value.length >= 3) {
       if (!isInElementT(value, 'h3', article)
@@ -127,11 +120,11 @@ function searchInUstensils(tag, article) {
  */
 function isIngredient(ingredients, tag) {
   let ok = false;
-  ingredients.forEach((ingredient) => {
+  for (const ingredient of ingredients) {
     if (ingredient.textContent.toLowerCase() === tag.toLowerCase()) {
       ok = true;
     }
-  });
+  }
   return ok;
 }
 
@@ -151,12 +144,9 @@ function searchInIngredients(tag, article) {
  * @param {String} filterName Nom du filter
  */
 function searchByTag(tag, filterName) {
-  // eslint-disable-next-line no-param-reassign
   filterName = filterName.slice(0, filterName.length - 5);
-  // eslint-disable-next-line no-param-reassign
   tag = tag.toLowerCase();
   const articles = getArticles();
-  // eslint-disable-next-line no-restricted-syntax
   for (const article of articles) {
     switch (filterName) {
       case 'ingredients':
@@ -178,7 +168,6 @@ function searchByTag(tag, filterName) {
  * Fonction qui efface les articles ne contenant pas les tags sélectionnés
  */
 function tagsSearch() {
-  // eslint-disable-next-line no-restricted-syntax
   for (const tagItem of tagsList()) {
     searchByTag(tagItem, `${whatFilter(tagItem)}_list`);
   }
@@ -189,12 +178,12 @@ function tagsSearch() {
  */
 function closeTagBtnDOMEvent() {
   const articles = document.querySelectorAll('article');
-  articles.forEach((article) => {
+  for (const article of articles) {    
     article.classList.remove('hidden_div');
     const input = document.querySelector('#search');
     DOMSearch(input.value);
     tagsSearch();
-  });
+  }
 }
 
 export {

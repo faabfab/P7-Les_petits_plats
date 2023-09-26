@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 // =============================================================================
 // IMPORTS
 // =============================================================================
@@ -48,7 +47,7 @@ function init() {
   // Filters
   // Tags
   const filters = document.querySelectorAll('.filter');
-  filters.forEach((filter) => {
+  for (const filter of filters) {
     const filterListBtn = filter.querySelector('.filter_list_btn');
     const filterListState = filter.querySelector('.filter_list_state');
     const filterListContent = filter.querySelector('.filter_list_content');
@@ -64,7 +63,7 @@ function init() {
         filter.setAttribute('data-state', 'close');
       }
     });
-  });
+  }
   // search input
   closeButtonSearchInput('#ingredients_search_input', '#ingredients_btn_reset');
   closeButtonSearchInput('#appliance_search_input', '#appliance_btn_reset');
@@ -72,11 +71,11 @@ function init() {
 
   // loop buttons
   const filterSearchButtons = document.querySelectorAll('.filter_btn_submit');
-  filterSearchButtons.forEach((filterSearchButton) => {
+  for (const filterSearchButton of filterSearchButtons) {
     filterSearchButton.addEventListener('click', (e) => {
       e.preventDefault();
     });
-  });
+  }
 
   // total recipes
   recipesCounter();
@@ -96,7 +95,7 @@ const tagsArray = []; // tags selected array
 
 const filtersItems = document.querySelectorAll('.filter_list li');
 const itemsSelected = document.querySelector('#items_selected');
-filtersItems.forEach((filterItem) => {
+for (const filterItem of filtersItems) {
   filterItem.addEventListener('click', () => {
     if (!tagsArray.includes(filterItem.textContent)) {
       itemsSelected.appendChild(tagElement(filterItem.textContent, tagsArray));
@@ -105,7 +104,7 @@ filtersItems.forEach((filterItem) => {
       errorMessageEmptyRecipes();
     }
   });
-});
+}
 
 // input filter event
 filterInputEvent('ingredients');
@@ -113,7 +112,6 @@ filterInputEvent('appliance');
 filterInputEvent('ustensils');
 
 // Main search bar
-// FIXME: bug quand on efface revient pas
 const mainSearch = document.querySelector('#search');
 mainSearch.addEventListener('input', () => {
   DOMSearch(mainSearch.value);
@@ -127,6 +125,6 @@ btResetSearchBar.addEventListener('click', resetSearchBar);
 
 // Reset buttons filter search events
 const filterResetButtons = document.querySelectorAll('.filter_btn_reset');
-filterResetButtons.forEach((filterResetButton) => {
+for (const filterResetButton of filterResetButtons) {
   filterResetButton.addEventListener('click', filterResetInput);
-});
+}

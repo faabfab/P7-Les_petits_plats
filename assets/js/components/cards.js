@@ -42,7 +42,7 @@ function thumbElement(image, name) {
 function ingredientListElement(ingredients) {
   const divIngredients = document.createElement('div');
   divIngredients.setAttribute('class', 'card_ingredients');
-  ingredients.forEach((ingredient) => {
+  for (const ingredient of ingredients) {
     const pIngredients = document.createElement('p');
     pIngredients.setAttribute('class', 'card_ingredient');
     const spanName = document.createElement('span');
@@ -58,8 +58,7 @@ function ingredientListElement(ingredients) {
     }
     pIngredients.appendChild(spanQuantity);
     divIngredients.appendChild(pIngredients);
-  });
-
+  }
   return divIngredients;
 }
 
@@ -132,9 +131,9 @@ function elementDatas(element) {
    */
 async function getCards(jsonConst) {
   const cards = document.querySelector('#cards');
-  jsonConst.forEach((element) => {
+  for (const element of jsonConst) {
     cards.appendChild(elementDatas(element));
-  });
+  }
 }
 
 export default getCards;

@@ -1,9 +1,3 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable import/extensions */
-// =============================================================================
-// Imports
-// =============================================================================
-
 /**
  * Fonction qui affiche un message d'erreur si il n'y a pas d'éléments trouvés
  */

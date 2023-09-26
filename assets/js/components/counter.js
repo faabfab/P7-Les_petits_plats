@@ -14,8 +14,6 @@ function recipesCounter() {
  * @returns boolean
  */
 function isHiddenRecipe(article) {
-  // eslint-disable-next-line no-restricted-syntax
-  // eslint-disable-next-line no-restricted-syntax
   for (const className of article.classList) {
     if (className === 'hidden_div') {
       return true;
@@ -32,7 +30,6 @@ function recipesDisplayCounter() {
   const totalSpan = document.querySelector('#total');
   let hiddenRecipes = 0;
   let displayRecipes = 0;
-  // eslint-disable-next-line no-restricted-syntax
   for (const article of articles) {
     if (isHiddenRecipe(article)) {
       hiddenRecipes += 1;
