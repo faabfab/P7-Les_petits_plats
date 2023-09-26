@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: components/counter.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,66 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: components/counter.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Fonction qui renvoi le nombre total de recettes du DOM
+ */
+function recipesCounter() {
+  const articles = document.querySelectorAll('article');
+  const totalSpan = document.querySelector('#total');
+  totalSpan.textContent = articles.length;
+  return articles.length;
+}
 
+/**
+ * Fonction qui retourne vrai si l'article est affichée
+ * @param {Element} article element à tester
+ * @returns boolean
+ */
+function isHiddenRecipe(article) {
+  // eslint-disable-next-line no-restricted-syntax
+  // eslint-disable-next-line no-restricted-syntax
+  for (const className of article.classList) {
+    if (className === 'hidden_div') {
+      return true;
+    }
+  }
+  return false;
+}
 
-    <h3> </h3>
+/**
+ * Fonction qui affiche le nombre de résultats trouvés
+ */
+function recipesDisplayCounter() {
+  const articles = document.querySelectorAll('article');
+  const totalSpan = document.querySelector('#total');
+  let hiddenRecipes = 0;
+  let displayRecipes = 0;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const article of articles) {
+    if (isHiddenRecipe(article)) {
+      hiddenRecipes += 1;
+    }
+  }
+  displayRecipes = recipesCounter() - hiddenRecipes;
+  totalSpan.textContent = displayRecipes;
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+// =============================================================================
+// Exports
+// =============================================================================
+export { recipesCounter, recipesDisplayCounter };
+</code></pre>
+        </article>
+    </section>
 
 
 
