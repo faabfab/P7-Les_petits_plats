@@ -152,19 +152,21 @@ function tagsSearch() {
  */
 function DOMSearch(value) {
   const articles = getArticles();
+  if (value.length < 3) {
+    for (const article of articles) {
+      article.classList.remove('hidden_div');
+    }
+    return;
+  }
   for (const article of articles) {
     tagsSearch();
-    if (value.length >= 3) {
-      if (!isInElementT(value, 'h3', article)
-          && !isInElementT(value, '.card_content_description', article)
-          && !isInIngredients(value, article)
-          && !isInDataAttribute(value, 'data-appliance', article)
-          && !isInDataAttribute(value, 'data-ustensils', article)
-      ) {
-        article.classList.add('hidden_div');
-      } else {
-        article.classList.remove('hidden_div');
-      }
+    if (!isInElementT(value, 'h3', article)
+        && !isInElementT(value, '.card_content_description', article)
+        && !isInIngredients(value, article)
+        && !isInDataAttribute(value, 'data-appliance', article)
+        && !isInDataAttribute(value, 'data-ustensils', article)
+    ) {
+      article.classList.add('hidden_div');
     } else {
       article.classList.remove('hidden_div');
     }
