@@ -7,7 +7,7 @@ import errorMessageEmptyRecipes from './utils/error.js';
 
 import { closeButtonSearchInput, resetSearchBar } from './components/search_bar.js';
 
-import { tagElement } from './components/tags.js';
+import { tagElement, tagsList } from './components/tags.js';
 
 import {
   applianceArray,
@@ -16,13 +16,14 @@ import {
   ustensilsArray,
   filterInputEvent,
   filterResetInput,
+  selectItem,
 } from './components/filters.js';
 
 import getCards from './components/cards.js';
 
 import { recipesCounter, recipesDisplayCounter } from './components/counter.js';
 
-import { DOMSearch, searchByTag } from './utils/search.js';
+import { DOMSearch, closeTagBtnDOMEvent } from './utils/search.js';
 
 /**
  * Fonction d'initialisation du DOM
@@ -91,18 +92,30 @@ init();
 // =============================================================================
 
 // filters
-const tagsArray = []; // tags selected array
-
+// FIXME: Faire comportements de la maquette li selected SUR TOUT LE LI
 const filtersItems = document.querySelectorAll('.filter_list li');
 const itemsSelected = document.querySelector('#items_selected');
 for (const filterItem of filtersItems) {
   filterItem.addEventListener('click', () => {
-    if (!tagsArray.includes(filterItem.textContent)) {
-      itemsSelected.appendChild(tagElement(filterItem.textContent, tagsArray));
-      searchByTag(filterItem.textContent, filterItem.parentElement.getAttribute('id'));
-      recipesDisplayCounter();
-      errorMessageEmptyRecipes();
+    if (!tagsList().includes(filterItem.textContent) && !filterItem.getAttribute('class')) {
+      // console.log(filterItem.getAttribute('class'));
+      itemsSelected.appendChild(tagElement(filterItem.textContent));
+      selectItem(filterItem);
+    } else {
+      for (const item of itemsSelected.childNodes) {
+        const it = item.textContent.toLowerCase();
+        if (it === tagElement(filterItem.textContent).textContent.toLowerCase()) {
+          itemsSelected.removeChild(item);
+        }
+      }
+      if (filterItem.getAttribute('class')) {
+        filterItem.removeAttribute('class');
+        filterItem.removeChild(filterItem.querySelector('button'));
+      }
     }
+    closeTagBtnDOMEvent();
+    recipesDisplayCounter();
+    errorMessageEmptyRecipes();
   });
 }
 

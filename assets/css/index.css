@@ -2451,6 +2451,23 @@ button{
   background-color: rgb(255 209 91 / var(--tw-bg-opacity));
 }
 
+.filter_list_li_selected{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 209 91 / var(--tw-bg-opacity));
+  font-weight: 700;
+}
+
+.filter_list_li_selected button{
+  margin: 0px;
+  height: 17px;
+  width: 17px;
+  background-color: transparent;
+  padding: 0px;
+}
+
 .filter_list_selected{
   margin-bottom: 10px;
 }

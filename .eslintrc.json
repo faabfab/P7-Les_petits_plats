@@ -12,6 +12,13 @@
     },
     "rules": {
         "no-restricted-syntax": ["error", "FunctionExpression", "WithStatement", "BinaryExpression[operator='for']"],
-        "import/extensions": ["ignorePackages"]
+        "import/extensions": [
+            "off",
+            "ignorePackages"
+         ],
+         "import/no-cycle": [
+            "off"
+          ]
     }
 }
+

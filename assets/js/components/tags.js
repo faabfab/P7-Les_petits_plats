@@ -4,34 +4,7 @@
 import { closeTagBtnDOMEvent } from '../utils/search.js';
 import { recipesDisplayCounter } from './counter.js';
 import errorMessageEmptyRecipes from '../utils/error.js';
-import { filterArray } from './filters.js';
-
-/**
- * Fonction qui retourne l'élément à afficher quand un tag est sélectionné
- * @param {String} name nom du tag dans la listStyle
- * @param {Array} tagsArray liste des tags
- * @returns l'élément à afficher
- */
-function tagElement(name, tagsArray) {
-  const divItemSelected = document.createElement('div');
-  divItemSelected.setAttribute('class', 'item_selected');
-  const p = document.createElement('p');
-  p.textContent = name;
-  divItemSelected.append(p);
-  const divItemClose = document.createElement('div');
-  divItemClose.setAttribute('class', 'item_selected_close');
-  divItemClose.innerHTML = '<svg width="10" height="10" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="black" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  tagsArray.push(name);
-  divItemClose.addEventListener('click', () => {
-    divItemClose.parentElement.remove();
-    tagsArray.splice(tagsArray.indexOf(name), 1);
-    closeTagBtnDOMEvent();
-    recipesDisplayCounter();
-    errorMessageEmptyRecipes();
-  });
-  divItemSelected.appendChild(divItemClose);
-  return divItemSelected;
-}
+import { filterArray, removeSelectedClass } from './filters.js';
 
 /**
  * Fonction qui retourne le nom du filtre si name en fait partie faux sinon
@@ -66,6 +39,39 @@ function whatFilter(name) {
 }
 
 /**
+ * Fonction qui retourne l'élément à afficher quand un tag est sélectionné
+ * @param {String} name nom du tag dans la listStyle
+ * @param {Array} tagsArray liste des tags
+ * @returns l'élément à afficher
+ */
+function tagElement(name) {
+  const divItemSelected = document.createElement('div');
+  divItemSelected.setAttribute('class', 'item_selected');
+  const p = document.createElement('p');
+  p.textContent = name;
+  divItemSelected.append(p);
+  const divItemClose = document.createElement('div');
+  divItemClose.setAttribute('class', 'item_selected_close');
+  divItemClose.innerHTML = '<svg width="10" height="10" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="black" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  // FIXME: cuillère à Soupe ne revient pas avoir avec les MAJUSCULES
+  divItemClose.addEventListener('click', () => {
+    divItemClose.parentElement.remove();
+    // FIXME: remove li filter class
+    for (const filterName of filterArray(whatFilter(name))) {
+      if (filterName.toLowerCase() === name.toLowerCase()) {
+        removeSelectedClass(whatFilter(name), filterName);
+        // FIXME: Enlever le bouton ici removeButtonInFilter(name, filterName)
+      }
+    }
+    closeTagBtnDOMEvent();
+    recipesDisplayCounter();
+    errorMessageEmptyRecipes();
+  });
+  divItemSelected.appendChild(divItemClose);
+  return divItemSelected;
+}
+
+/**
    * Fonction qui retourne le tableau des tags sélectionnés
    * @returns {Array}
    */
@@ -78,6 +84,11 @@ function tagsList() {
   }
   return tagsArray;
 }
+
+function removeTag(tagItem) {
+  tagItem.parentElement.remove(tagItem);
+}
+
 // =============================================================================
 // Exports
 // =============================================================================
@@ -86,4 +97,5 @@ export {
   tagInFilter,
   whatFilter,
   tagsList,
+  removeTag,
 };

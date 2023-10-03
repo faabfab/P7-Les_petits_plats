@@ -43,8 +43,8 @@ function ustensilsArray(jsonConst) {
   const ustensilsList = [];
   for (const element of jsonConst) {
     for (const el of element.ustensils) {
-      if (!ustensilsList.includes(el)) {
-        ustensilsList.push(el);
+      if (!ustensilsList.includes(el.toLowerCase())) {
+        ustensilsList.push(el.toLowerCase());
       }
     }
   }
@@ -64,6 +64,24 @@ function filterArray(filterName) {
     arrayTags.push(filterElement.textContent);
   }
   return arrayTags;
+}
+
+/**
+ * Fonction qui enlève la classe selected de name
+ * @param {String} filterName nom de le catégorie du filtre
+ * @param {String} name nom du filtre
+ */
+function removeSelectedClass(filterName, name) {
+  const idFilter = `#${filterName}_list`;
+  const filter = document.querySelector(idFilter);
+  const filterElements = filter.querySelectorAll('li');
+  for (const filterItem of filterElements) {
+    if (filterItem.textContent.toLowerCase() === name.toLowerCase()) {
+      const closeButton = filterItem.querySelector('button');
+      filterItem.removeChild(closeButton);
+      filterItem.removeAttribute('class');
+    }
+  }
 }
 
 /**
@@ -117,6 +135,19 @@ function filterResetInput() {
   }
 }
 
+/**
+ * Fonction  qui affiche le tag
+ * @param {Element} filterItem dans la liste des filtres
+ */
+function selectItem(filterItem) {
+  filterItem.setAttribute('class', 'filter_list_li_selected');
+  const closeItemSelected = document.createElement('button');
+  closeItemSelected.setAttribute('class', 'close_filter_list_li_selected');
+  closeItemSelected.innerHTML = '<svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8.5" cy="8.5" r="8.5" fill="black"/><path d="M11 11L8.5 8.5M8.5 8.5L6 6M8.5 8.5L11 6M8.5 8.5L6 11" stroke="#FFD15B" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  filterItem.appendChild(closeItemSelected);
+  // FIXME: Faire traitement dans les tags et les recettes
+}
+
 // =============================================================================
 // EXPORTS
 // =============================================================================
@@ -129,4 +160,6 @@ export {
   filterInputEvent,
   filterResetInput,
   filterArray,
+  selectItem,
+  removeSelectedClass,
 };

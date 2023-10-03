@@ -62,31 +62,6 @@ function isInDataAttribute(value, dataAttribute, article) {
   return false;
 }
 
-/**
- * Fonction qui efface les articles ne contenant pas la valeur à tester
- * @param {String} value valeur à tester
- */
-function DOMSearch(value) {
-  const articles = getArticles();
-  for (const article of articles) {
-    tagsSearch();
-    if (value.length >= 3) {
-      if (!isInElementT(value, 'h3', article)
-          && !isInElementT(value, '.card_content_description', article)
-          && !isInIngredients(value, article)
-          && !isInDataAttribute(value, 'data-appliance', article)
-          && !isInDataAttribute(value, 'data-ustensils', article)
-      ) {
-        article.classList.add('hidden_div');
-      } else {
-        article.classList.remove('hidden_div');
-      }
-    } else {
-      article.classList.remove('hidden_div');
-    }
-  }
-}
-
 // =============================================================================
 // Filter search
 // =============================================================================
@@ -107,7 +82,7 @@ function searchInAppliance(tag, article) {
  */
 function searchInUstensils(tag, article) {
   const divContent = article.querySelector('.card_content');
-  if (!divContent.getAttribute('data-ustensils').toLowerCase().includes(tag)) {
+  if (!divContent.getAttribute('data-ustensils').toLowerCase().includes(tag.toLowerCase())) {
     article.classList.add('hidden_div');
   }
 }
@@ -144,19 +119,17 @@ function searchInIngredients(tag, article) {
  * @param {String} filterName Nom du filter
  */
 function searchByTag(tag, filterName) {
-  filterName = filterName.slice(0, filterName.length - 5);
-  tag = tag.toLowerCase();
   const articles = getArticles();
   for (const article of articles) {
-    switch (filterName) {
+    switch (filterName.slice(0, filterName.length - 5)) {
       case 'ingredients':
-        searchInIngredients(tag, article);
+        searchInIngredients(tag.toLowerCase(), article);
         break;
       case 'appliance':
-        searchInAppliance(tag, article);
+        searchInAppliance(tag.toLowerCase(), article);
         break;
       case 'ustensils':
-        searchInUstensils(tag, article);
+        searchInUstensils(tag.toLowerCase(), article);
         break;
       default:
         break;
@@ -174,11 +147,36 @@ function tagsSearch() {
 }
 
 /**
+ * Fonction qui efface les articles ne contenant pas la valeur à tester
+ * @param {String} value valeur à tester
+ */
+function DOMSearch(value) {
+  const articles = getArticles();
+  for (const article of articles) {
+    tagsSearch();
+    if (value.length >= 3) {
+      if (!isInElementT(value, 'h3', article)
+          && !isInElementT(value, '.card_content_description', article)
+          && !isInIngredients(value, article)
+          && !isInDataAttribute(value, 'data-appliance', article)
+          && !isInDataAttribute(value, 'data-ustensils', article)
+      ) {
+        article.classList.add('hidden_div');
+      } else {
+        article.classList.remove('hidden_div');
+      }
+    } else {
+      article.classList.remove('hidden_div');
+    }
+  }
+}
+
+/**
  * Fonction qui réactualise la recherche quand on supprime un tag
  */
 function closeTagBtnDOMEvent() {
   const articles = document.querySelectorAll('article');
-  for (const article of articles) {    
+  for (const article of articles) {
     article.classList.remove('hidden_div');
     const input = document.querySelector('#search');
     DOMSearch(input.value);
