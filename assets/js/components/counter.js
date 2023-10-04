@@ -1,14 +1,4 @@
 /**
- * Fonction qui renvoi le nombre total de recettes du DOM
- */
-function recipesCounter() {
-  const articles = document.querySelectorAll('article');
-  const totalSpan = document.querySelector('#total');
-  totalSpan.textContent = articles.length;
-  return articles.length;
-}
-
-/**
  * Fonction qui retourne vrai si l'article est affichée
  * @param {Element} article element à tester
  * @returns boolean
@@ -28,18 +18,20 @@ function isHiddenRecipe(article) {
 function recipesDisplayCounter() {
   const articles = document.querySelectorAll('article');
   const totalSpan = document.querySelector('#total');
+  let totalRecipes = 0;
   let hiddenRecipes = 0;
   let displayRecipes = 0;
   for (const article of articles) {
+    totalRecipes += 1;
     if (isHiddenRecipe(article)) {
       hiddenRecipes += 1;
     }
   }
-  displayRecipes = recipesCounter() - hiddenRecipes;
+  displayRecipes = totalRecipes - hiddenRecipes;
   totalSpan.textContent = displayRecipes;
 }
 
 // =============================================================================
 // Exports
 // =============================================================================
-export { recipesCounter, recipesDisplayCounter };
+export default recipesDisplayCounter;

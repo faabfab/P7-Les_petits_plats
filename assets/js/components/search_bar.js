@@ -2,7 +2,7 @@
 // Imports
 // =============================================================================
 import { tagsSearch } from '../utils/search.js';
-import { recipesDisplayCounter } from './counter.js';
+import recipesDisplayCounter from './counter.js';
 
 /**
  * Fonction qui affiche ou efface le bouton reset

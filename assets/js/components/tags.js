@@ -2,7 +2,7 @@
 // Imports
 // =============================================================================
 import { closeTagBtnDOMEvent } from '../utils/search.js';
-import { recipesDisplayCounter } from './counter.js';
+import recipesDisplayCounter from './counter.js';
 import errorMessageEmptyRecipes from '../utils/error.js';
 import { filterArray, removeSelectedClass } from './filters.js';
 

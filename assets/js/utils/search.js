@@ -152,14 +152,16 @@ function tagsSearch() {
  */
 function DOMSearch(value) {
   const articles = getArticles();
+  // FIXME: Erreur quand tags et qu'on enlève des caractères
   if (value.length < 3) {
     for (const article of articles) {
       article.classList.remove('hidden_div');
     }
+    tagsSearch();
     return;
   }
+  console.time('search bar');
   for (const article of articles) {
-    tagsSearch();
     if (!isInElementT(value, 'h3', article)
         && !isInElementT(value, '.card_content_description', article)
         && !isInIngredients(value, article)
@@ -170,7 +172,9 @@ function DOMSearch(value) {
     } else {
       article.classList.remove('hidden_div');
     }
+    tagsSearch();
   }
+  console.timeEnd('search bar');
 }
 
 /**

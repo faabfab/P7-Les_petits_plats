@@ -1,3 +1,4 @@
+import { cards } from '../utils/variables.js';
 // =============================================================================
 //  CARDS
 // =============================================================================
@@ -130,7 +131,6 @@ function elementDatas(element) {
    * @param {Array} jsonConst tableau des recettes
    */
 async function getCards(jsonConst) {
-  const cards = document.querySelector('#cards');
   for (const element of jsonConst) {
     cards.appendChild(elementDatas(element));
   }

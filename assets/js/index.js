@@ -3,7 +3,18 @@
 // =============================================================================
 import { recipes } from '../data/recipes.js';
 
+import {
+  searchButton,
+  filters,
+  filterSearchButtons,
+  mainSearch,
+  btResetSearchBar,
+  filterResetButtons,
+} from './utils/variables.js';
+
 import errorMessageEmptyRecipes from './utils/error.js';
+
+import recipesDisplayCounter from './components/counter.js';
 
 import { closeButtonSearchInput, resetSearchBar } from './components/search_bar.js';
 
@@ -21,8 +32,6 @@ import {
 
 import getCards from './components/cards.js';
 
-import { recipesCounter, recipesDisplayCounter } from './components/counter.js';
-
 import { DOMSearch, closeTagBtnDOMEvent } from './utils/search.js';
 
 /**
@@ -30,24 +39,30 @@ import { DOMSearch, closeTagBtnDOMEvent } from './utils/search.js';
  */
 function init() {
   // init DOM
+  console.time('recipes init');
   getCards(recipes);
+  console.timeEnd('recipes init');
 
+  console.time('ingrédients init');
   getFilterElements(ingredientsArray(recipes), 'ingredients');
+  console.timeEnd('ingrédients init');
+  console.time('appareils init');
   getFilterElements(applianceArray(recipes), 'appliance');
+  console.timeEnd('appareils init');
+  console.time('ustensiles init');
   getFilterElements(ustensilsArray(recipes), 'ustensils');
+  console.timeEnd('ustensiles init');
 
   // Events on DOM
   // Input principal
   closeButtonSearchInput('#search', '#search_reset');
   // loop button
-  const searchButton = document.querySelector('#search_button');
   searchButton.addEventListener('click', (e) => {
     e.preventDefault();
   });
 
   // Filters
   // Tags
-  const filters = document.querySelectorAll('.filter');
   for (const filter of filters) {
     const filterListBtn = filter.querySelector('.filter_list_btn');
     const filterListState = filter.querySelector('.filter_list_state');
@@ -71,7 +86,6 @@ function init() {
   closeButtonSearchInput('#ustensils_search_input', '#ustensils_btn_reset');
 
   // loop buttons
-  const filterSearchButtons = document.querySelectorAll('.filter_btn_submit');
   for (const filterSearchButton of filterSearchButtons) {
     filterSearchButton.addEventListener('click', (e) => {
       e.preventDefault();
@@ -79,7 +93,7 @@ function init() {
   }
 
   // total recipes
-  recipesCounter();
+  recipesDisplayCounter();
 }
 
 // =============================================================================
@@ -93,12 +107,14 @@ init();
 
 // filters
 // FIXME: Faire comportements de la maquette li selected SUR TOUT LE LI
+// BUG: Importation des variables ne marche pas
 const filtersItems = document.querySelectorAll('.filter_list li');
 const itemsSelected = document.querySelector('#items_selected');
 for (const filterItem of filtersItems) {
   filterItem.addEventListener('click', () => {
+    console.time(`Filter search : ${filterItem.textContent}`);
+
     if (!tagsList().includes(filterItem.textContent) && !filterItem.getAttribute('class')) {
-      // console.log(filterItem.getAttribute('class'));
       itemsSelected.appendChild(tagElement(filterItem.textContent));
       selectItem(filterItem);
     } else {
@@ -116,6 +132,8 @@ for (const filterItem of filtersItems) {
     closeTagBtnDOMEvent();
     recipesDisplayCounter();
     errorMessageEmptyRecipes();
+
+    console.timeEnd(`Filter search : ${filterItem.textContent}`);
   });
 }
 
@@ -125,19 +143,18 @@ filterInputEvent('appliance');
 filterInputEvent('ustensils');
 
 // Main search bar
-const mainSearch = document.querySelector('#search');
 mainSearch.addEventListener('input', () => {
+  // console.time('search bar');
   DOMSearch(mainSearch.value);
+  // console.timeEnd('search bar');
   recipesDisplayCounter();
   errorMessageEmptyRecipes();
 });
 
 // Reset button of search bar
-const btResetSearchBar = document.querySelector('#search_reset');
 btResetSearchBar.addEventListener('click', resetSearchBar);
 
 // Reset buttons filter search events
-const filterResetButtons = document.querySelectorAll('.filter_btn_reset');
 for (const filterResetButton of filterResetButtons) {
   filterResetButton.addEventListener('click', filterResetInput);
 }
