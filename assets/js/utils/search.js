@@ -160,7 +160,7 @@ function DOMSearch(value) {
     tagsSearch();
     return;
   }
-  console.time('search bar');
+  console.time(`search bar : ${value}`);
   for (const article of articles) {
     if (!isInElementT(value, 'h3', article)
         && !isInElementT(value, '.card_content_description', article)
@@ -174,7 +174,7 @@ function DOMSearch(value) {
     }
     tagsSearch();
   }
-  console.timeEnd('search bar');
+  console.timeEnd(`search bar : ${value}`);
 }
 
 /**
