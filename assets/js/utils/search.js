@@ -44,7 +44,6 @@ function isInIngredients(value, article) {
       return true;
     }
   });
-
 }
 
 /**
