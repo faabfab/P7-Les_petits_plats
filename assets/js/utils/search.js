@@ -67,7 +67,9 @@ function isInDataAttribute(value, dataAttribute, article) {
 // =============================================================================
 
 /**
- * Fonction qui efface l'article s'il ne contient pas le tag dans ses appareils
+ * fonction qui efface l'article si le tag n'est pas dans les appareils de l'article
+ * @param {Element} tag de la liste des tags
+ * @param {Element} article de la page
  */
 function searchInAppliance(tag, article) {
   const content = article.querySelector('.card_content');
@@ -78,7 +80,9 @@ function searchInAppliance(tag, article) {
 }
 
 /**
- * Fonction qui efface l'article s'il ne contient pas le tag dans ses ustensiles
+ * fonction qui efface l'article si le tag n'est pas dans les ustensiles de l'article
+ * @param {Element} tag de la liste des tags
+ * @param {Element} article de la page
  */
 function searchInUstensils(tag, article) {
   const divContent = article.querySelector('.card_content');
@@ -88,9 +92,9 @@ function searchInUstensils(tag, article) {
 }
 
 /**
- * Fonction qui dit si tag est dans la liste des ingrédients ou pas
- * @param {Array} ingredients liste des ingrédients
- * @param {String} tag valeur à tester
+ * fonction qui renvoi si le tag est dans les ingrédients de l'article
+ * @param {Element} tag de la liste des tags
+ * @param {Element} article de la page
  * @returns boolean
  */
 function isIngredient(ingredients, tag) {
@@ -104,7 +108,9 @@ function isIngredient(ingredients, tag) {
 }
 
 /**
- * Fonction qui efface l'article s'il ne contient pas le tag dans la liste de ses ingrédients
+ * fonction qui efface l'article si le tag n'est pas dans les ingrédients de l'article
+ * @param {Element} tag de la liste des tags
+ * @param {Element} article de la page
  */
 function searchInIngredients(tag, article) {
   const ingredients = article.querySelectorAll('.card_ingredient_name');

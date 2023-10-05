@@ -41,7 +41,6 @@ function whatFilter(name) {
 /**
  * Fonction qui retourne l'élément à afficher quand un tag est sélectionné
  * @param {String} name nom du tag dans la listStyle
- * @param {Array} tagsArray liste des tags
  * @returns l'élément à afficher
  */
 function tagElement(name) {
