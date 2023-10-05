@@ -131,9 +131,9 @@ function elementDatas(element) {
    * @param {Array} jsonConst tableau des recettes
    */
 async function getCards(jsonConst) {
-  for (const element of jsonConst) {
+  jsonConst.forEach((element) => {
     cards.appendChild(elementDatas(element));
-  }
+  });
 }
 
 export default getCards;
