@@ -108,6 +108,7 @@ function filterInputEvent(filterName) {
   filterInput.addEventListener('input', () => {
     const filterList = document.querySelector(`#${filterName}_list`);
     const filterItems = filterList.querySelectorAll('li');
+    // TODO: Faire leave early
     if (filterInput.value.length >= 3) {
       for (const filterItem of filterItems) {
         if (filterItem.textContent.toLowerCase().includes(filterInput.value.toLowerCase())) {
