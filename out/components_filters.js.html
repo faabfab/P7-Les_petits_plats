@@ -71,8 +71,8 @@ function ustensilsArray(jsonConst) {
   const ustensilsList = [];
   for (const element of jsonConst) {
     for (const el of element.ustensils) {
-      if (!ustensilsList.includes(el)) {
-        ustensilsList.push(el);
+      if (!ustensilsList.includes(el.toLowerCase())) {
+        ustensilsList.push(el.toLowerCase());
       }
     }
   }
@@ -92,6 +92,24 @@ function filterArray(filterName) {
     arrayTags.push(filterElement.textContent);
   }
   return arrayTags;
+}
+
+/**
+ * Fonction qui enlève la classe selected de name
+ * @param {String} filterName nom de le catégorie du filtre
+ * @param {String} name nom du filtre
+ */
+function removeSelectedClass(filterName, name) {
+  const idFilter = `#${filterName}_list`;
+  const filter = document.querySelector(idFilter);
+  const filterElements = filter.querySelectorAll('li');
+  for (const filterItem of filterElements) {
+    if (filterItem.textContent.toLowerCase() === name.toLowerCase()) {
+      const closeButton = filterItem.querySelector('button');
+      filterItem.removeChild(closeButton);
+      filterItem.removeAttribute('class');
+    }
+  }
 }
 
 /**
@@ -145,6 +163,19 @@ function filterResetInput() {
   }
 }
 
+/**
+ * Fonction  qui affiche le tag
+ * @param {Element} filterItem dans la liste des filtres
+ */
+function selectItem(filterItem) {
+  filterItem.setAttribute('class', 'filter_list_li_selected');
+  const closeItemSelected = document.createElement('button');
+  closeItemSelected.setAttribute('class', 'close_filter_list_li_selected');
+  closeItemSelected.innerHTML = '&lt;svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">&lt;circle cx="8.5" cy="8.5" r="8.5" fill="black"/>&lt;path d="M11 11L8.5 8.5M8.5 8.5L6 6M8.5 8.5L11 6M8.5 8.5L6 11" stroke="#FFD15B" stroke-linecap="round" stroke-linejoin="round"/>&lt;/svg>';
+  filterItem.appendChild(closeItemSelected);
+  // FIXME: Faire traitement dans les tags et les recettes
+}
+
 // =============================================================================
 // EXPORTS
 // =============================================================================
@@ -157,6 +188,8 @@ export {
   filterInputEvent,
   filterResetInput,
   filterArray,
+  selectItem,
+  removeSelectedClass,
 };
 </code></pre>
         </article>
@@ -168,13 +201,13 @@ export {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#getArticles">getArticles</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesCounter">recipesCounter</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#getArticles">getArticles</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#removeSelectedClass">removeSelectedClass</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#selectItem">selectItem</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Sep 26 2023 14:19:19 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Oct 05 2023 10:24:23 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

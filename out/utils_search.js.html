@@ -90,37 +90,14 @@ function isInDataAttribute(value, dataAttribute, article) {
   return false;
 }
 
-/**
- * Fonction qui efface les articles ne contenant pas la valeur à tester
- * @param {String} value valeur à tester
- */
-function DOMSearch(value) {
-  const articles = getArticles();
-  for (const article of articles) {
-    tagsSearch();
-    if (value.length >= 3) {
-      if (!isInElementT(value, 'h3', article)
-          &amp;&amp; !isInElementT(value, '.card_content_description', article)
-          &amp;&amp; !isInIngredients(value, article)
-          &amp;&amp; !isInDataAttribute(value, 'data-appliance', article)
-          &amp;&amp; !isInDataAttribute(value, 'data-ustensils', article)
-      ) {
-        article.classList.add('hidden_div');
-      } else {
-        article.classList.remove('hidden_div');
-      }
-    } else {
-      article.classList.remove('hidden_div');
-    }
-  }
-}
-
 // =============================================================================
 // Filter search
 // =============================================================================
 
 /**
- * Fonction qui efface l'article s'il ne contient pas le tag dans ses appareils
+ * fonction qui efface l'article si le tag n'est pas dans les appareils de l'article
+ * @param {Element} tag de la liste des tags
+ * @param {Element} article de la page
  */
 function searchInAppliance(tag, article) {
   const content = article.querySelector('.card_content');
@@ -131,19 +108,21 @@ function searchInAppliance(tag, article) {
 }
 
 /**
- * Fonction qui efface l'article s'il ne contient pas le tag dans ses ustensiles
+ * fonction qui efface l'article si le tag n'est pas dans les ustensiles de l'article
+ * @param {Element} tag de la liste des tags
+ * @param {Element} article de la page
  */
 function searchInUstensils(tag, article) {
   const divContent = article.querySelector('.card_content');
-  if (!divContent.getAttribute('data-ustensils').toLowerCase().includes(tag)) {
+  if (!divContent.getAttribute('data-ustensils').toLowerCase().includes(tag.toLowerCase())) {
     article.classList.add('hidden_div');
   }
 }
 
 /**
- * Fonction qui dit si tag est dans la liste des ingrédients ou pas
- * @param {Array} ingredients liste des ingrédients
- * @param {String} tag valeur à tester
+ * fonction qui renvoi si le tag est dans les ingrédients de l'article
+ * @param {Element} tag de la liste des tags
+ * @param {Element} article de la page
  * @returns boolean
  */
 function isIngredient(ingredients, tag) {
@@ -157,7 +136,9 @@ function isIngredient(ingredients, tag) {
 }
 
 /**
- * Fonction qui efface l'article s'il ne contient pas le tag dans la liste de ses ingrédients
+ * fonction qui efface l'article si le tag n'est pas dans les ingrédients de l'article
+ * @param {Element} tag de la liste des tags
+ * @param {Element} article de la page
  */
 function searchInIngredients(tag, article) {
   const ingredients = article.querySelectorAll('.card_ingredient_name');
@@ -172,19 +153,17 @@ function searchInIngredients(tag, article) {
  * @param {String} filterName Nom du filter
  */
 function searchByTag(tag, filterName) {
-  filterName = filterName.slice(0, filterName.length - 5);
-  tag = tag.toLowerCase();
   const articles = getArticles();
   for (const article of articles) {
-    switch (filterName) {
+    switch (filterName.slice(0, filterName.length - 5)) {
       case 'ingredients':
-        searchInIngredients(tag, article);
+        searchInIngredients(tag.toLowerCase(), article);
         break;
       case 'appliance':
-        searchInAppliance(tag, article);
+        searchInAppliance(tag.toLowerCase(), article);
         break;
       case 'ustensils':
-        searchInUstensils(tag, article);
+        searchInUstensils(tag.toLowerCase(), article);
         break;
       default:
         break;
@@ -202,11 +181,42 @@ function tagsSearch() {
 }
 
 /**
+ * Fonction qui efface les articles ne contenant pas la valeur à tester
+ * @param {String} value valeur à tester
+ */
+function DOMSearch(value) {
+  const articles = getArticles();
+  // FIXME: Erreur quand tags et qu'on enlève des caractères
+  if (value.length &lt; 3) {
+    for (const article of articles) {
+      article.classList.remove('hidden_div');
+    }
+    tagsSearch();
+    return;
+  }
+  console.time(`search bar : ${value}`);
+  for (const article of articles) {
+    if (!isInElementT(value, 'h3', article)
+        &amp;&amp; !isInElementT(value, '.card_content_description', article)
+        &amp;&amp; !isInIngredients(value, article)
+        &amp;&amp; !isInDataAttribute(value, 'data-appliance', article)
+        &amp;&amp; !isInDataAttribute(value, 'data-ustensils', article)
+    ) {
+      article.classList.add('hidden_div');
+    } else {
+      article.classList.remove('hidden_div');
+    }
+    tagsSearch();
+  }
+  console.timeEnd(`search bar : ${value}`);
+}
+
+/**
  * Fonction qui réactualise la recherche quand on supprime un tag
  */
 function closeTagBtnDOMEvent() {
   const articles = document.querySelectorAll('article');
-  for (const article of articles) {    
+  for (const article of articles) {
     article.classList.remove('hidden_div');
     const input = document.querySelector('#search');
     DOMSearch(input.value);
@@ -230,13 +240,13 @@ export {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#getArticles">getArticles</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesCounter">recipesCounter</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#getArticles">getArticles</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#removeSelectedClass">removeSelectedClass</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#selectItem">selectItem</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Sep 26 2023 14:19:19 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Oct 05 2023 10:24:23 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>
