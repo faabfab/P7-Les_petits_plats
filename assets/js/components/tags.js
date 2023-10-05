@@ -52,16 +52,13 @@ function tagElement(name) {
   const divItemClose = document.createElement('div');
   divItemClose.setAttribute('class', 'item_selected_close');
   divItemClose.innerHTML = '<svg width="10" height="10" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="black" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  // FIXME: cuillère à Soupe ne revient pas avoir avec les MAJUSCULES
   divItemClose.addEventListener('click', () => {
     divItemClose.parentElement.remove();
-    // FIXME: remove li filter class
-    for (const filterName of filterArray(whatFilter(name))) {
+    filterArray(whatFilter(name)).forEach((filterName) => {
       if (filterName.toLowerCase() === name.toLowerCase()) {
         removeSelectedClass(whatFilter(name), filterName);
-        // FIXME: Enlever le bouton ici removeButtonInFilter(name, filterName)
       }
-    }
+    });
     closeTagBtnDOMEvent();
     recipesDisplayCounter();
     errorMessageEmptyRecipes();
@@ -77,10 +74,10 @@ function tagElement(name) {
 function tagsList() {
   const tagsArray = [];
   const tagsDiv = document.querySelectorAll('.item_selected');
-  for (const tag of tagsDiv) {
+  tagsDiv.forEach((tag) => {
     const p = tag.querySelector('p');
     tagsArray.push(p.textContent);
-  }
+  });
   return tagsArray;
 }
 

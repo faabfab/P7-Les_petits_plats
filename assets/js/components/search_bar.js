@@ -29,11 +29,11 @@ function closeButtonSearchInput(input, closeButton) {
    */
 function resetSearchBar() {
   const articles = document.querySelectorAll('article');
-  for (const article of articles) {
+  articles.forEach((article) => {
     article.classList.remove('hidden_div');
     tagsSearch();
     recipesDisplayCounter();
-  }
+  });
 }
 
 // =============================================================================

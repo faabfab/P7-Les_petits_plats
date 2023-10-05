@@ -37,13 +37,14 @@ function isInElementT(value, DOMElement, article) {
  */
 function isInIngredients(value, article) {
   const ingredientsName = article.querySelectorAll('.card_ingredient_name');
-  for (const ingredientName of ingredientsName) {
+  // BUG: eslint-disable-next-line consistent-return
+  ingredientsName.forEach((ingredientName) => {
     const ingredient = ingredientName.textContent.toLowerCase();
     if (ingredient.includes(value)) {
       return true;
     }
-  }
-  return false;
+  });
+
 }
 
 /**
@@ -99,11 +100,11 @@ function searchInUstensils(tag, article) {
  */
 function isIngredient(ingredients, tag) {
   let ok = false;
-  for (const ingredient of ingredients) {
+  ingredients.forEach((ingredient) => {
     if (ingredient.textContent.toLowerCase() === tag.toLowerCase()) {
       ok = true;
     }
-  }
+  });
   return ok;
 }
 
@@ -126,7 +127,7 @@ function searchInIngredients(tag, article) {
  */
 function searchByTag(tag, filterName) {
   const articles = getArticles();
-  for (const article of articles) {
+  articles.forEach((article) => {
     switch (filterName.slice(0, filterName.length - 5)) {
       case 'ingredients':
         searchInIngredients(tag.toLowerCase(), article);
@@ -140,16 +141,16 @@ function searchByTag(tag, filterName) {
       default:
         break;
     }
-  }
+  });
 }
 
 /**
  * Fonction qui efface les articles ne contenant pas les tags sélectionnés
  */
 function tagsSearch() {
-  for (const tagItem of tagsList()) {
+  tagsList().forEach((tagItem) => {
     searchByTag(tagItem, `${whatFilter(tagItem)}_list`);
-  }
+  });
 }
 
 /**
@@ -160,14 +161,14 @@ function DOMSearch(value) {
   const articles = getArticles();
   // FIXME: Erreur quand tags et qu'on enlève des caractères
   if (value.length < 3) {
-    for (const article of articles) {
+    articles.forEach((article) => {
       article.classList.remove('hidden_div');
-    }
+    });
     tagsSearch();
     return;
   }
   console.time(`search bar : ${value}`);
-  for (const article of articles) {
+  articles.forEach((article) => {
     if (!isInElementT(value, 'h3', article)
         && !isInElementT(value, '.card_content_description', article)
         && !isInIngredients(value, article)
@@ -179,7 +180,7 @@ function DOMSearch(value) {
       article.classList.remove('hidden_div');
     }
     tagsSearch();
-  }
+  });
   console.timeEnd(`search bar : ${value}`);
 }
 
@@ -188,12 +189,12 @@ function DOMSearch(value) {
  */
 function closeTagBtnDOMEvent() {
   const articles = document.querySelectorAll('article');
-  for (const article of articles) {
+  articles.forEach((article) => {
     article.classList.remove('hidden_div');
     const input = document.querySelector('#search');
     DOMSearch(input.value);
     tagsSearch();
-  }
+  });
 }
 
 export {

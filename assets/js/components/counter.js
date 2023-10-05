@@ -4,6 +4,17 @@
  * @returns boolean
  */
 function isHiddenRecipe(article) {
+  // BUG: isHiddenRecipe
+  /*
+  article.classList.forEach((className) => {
+    console.log((className === 'hidden_div'));
+    if (className === 'hidden_div') {
+      return true;
+    }
+    // return false;
+  });
+  */
+
   for (const className of article.classList) {
     if (className === 'hidden_div') {
       return true;
@@ -21,12 +32,12 @@ function recipesDisplayCounter() {
   let totalRecipes = 0;
   let hiddenRecipes = 0;
   let displayRecipes = 0;
-  for (const article of articles) {
+  articles.forEach((article) => {
     totalRecipes += 1;
     if (isHiddenRecipe(article)) {
       hiddenRecipes += 1;
     }
-  }
+  });
   displayRecipes = totalRecipes - hiddenRecipes;
   totalSpan.textContent = displayRecipes;
 }
