@@ -158,7 +158,6 @@ function tagsSearch() {
  */
 function DOMSearch(value) {
   const articles = getArticles();
-  // FIXME: Erreur quand tags et qu'on enlève des caractères
   if (value.length < 3) {
     articles.forEach((article) => {
       article.classList.remove('hidden_div');
