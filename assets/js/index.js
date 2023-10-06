@@ -106,7 +106,6 @@ init();
 // =============================================================================
 
 // filters
-// FIXME: Faire comportements de la maquette li selected SUR TOUT LE LI
 // BUG: Importation des variables ne marche pas
 const filtersItems = document.querySelectorAll('.filter_list li');
 const itemsSelected = document.querySelector('#items_selected');
