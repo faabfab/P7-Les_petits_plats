@@ -1,26 +1,18 @@
+// import { articles, totalSpan } from '../utils/variables.js';
+
 /**
  * Fonction qui retourne vrai si l'article est affichée
  * @param {Element} article element à tester
  * @returns boolean
  */
 function isHiddenRecipe(article) {
-  // BUG: isHiddenRecipe
-  /*
+  let res = false;
   article.classList.forEach((className) => {
-    console.log((className === 'hidden_div'));
     if (className === 'hidden_div') {
-      return true;
+      res = true;
     }
-    // return false;
   });
-  */
-
-  for (const className of article.classList) {
-    if (className === 'hidden_div') {
-      return true;
-    }
-  }
-  return false;
+  return res;
 }
 
 /**
