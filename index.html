@@ -18,7 +18,7 @@
             <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
             <form method="get" class="search_bar">
                 <label for="search">Search</label>
-                <input type="search" name="search" id="search" placeholder="Rechercher une recette, un ingrédient, ...">
+                <input type="search" name="search" id="search" pattern="/^([a-zA-Z ]+)$/" placeholder="Rechercher une recette, un ingrédient, ...">
                 <button type="reset" class="hidden_div" id="search_reset">
                     <img src="/assets/img/close_search.svg" alt="reset search">
                 </button>
@@ -42,7 +42,7 @@
                         <div class="filter_list_content hidden_div">
                             <form class="filter_search" id="filter_ingredient">
                                 <label for="ingredients_search_input">Ingrédients</label>
-                                <input type="search" name="ingredients_search_input" id="ingredients_search_input" class="filter_search_input">
+                                <input type="search" name="ingredients_search_input" pattern="/^([a-zA-Z ]+)$/" id="ingredients_search_input" class="filter_search_input">
                                 <button type="reset" class="filter_btn_reset hidden_div" id="ingredients_btn_reset" value="ingredients">
                                     <svg width="6" height="6" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="#7A7A7A" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -66,7 +66,7 @@
                         <div class="filter_list_content hidden_div">
                             <form class="filter_search" id="filter_appliance">
                                 <label for="appliance_search_input">Appareils</label>
-                                <input type="search" name="appliance_search_input" id="appliance_search_input" class="filter_search_input">
+                                <input type="search" name="appliance_search_input" id="appliance_search_input" pattern="/^([a-zA-Z ]+)$/" class="filter_search_input">
                                 <button type="reset" class="filter_btn_reset hidden_div" id="appliance_btn_reset">
                                     <svg width="6" height="6" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="#7A7A7A" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -91,7 +91,7 @@
                         <div class="filter_list_content hidden_div">
                             <form class="filter_search" id="filter_ustensils">
                                 <label for="ustensils_search_input">Ustensiles</label>
-                                <input type="search" name="ustensils_search_input" id="ustensils_search_input" class="filter_search_input">
+                                <input type="search" name="ustensils_search_input" id="ustensils_search_input" pattern="/^([a-zA-Z ]+)$/" class="filter_search_input">
                                 <button type="reset" class="filter_btn_reset hidden_div" id="ustensils_btn_reset">
                                     <svg width="6" height="6" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="#7A7A7A" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
