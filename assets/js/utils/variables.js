@@ -17,6 +17,8 @@ const filterSearchButtons = document.querySelectorAll('.filter_btn_submit');
 const filtersItems = document.querySelectorAll('.filter_list li');
 // tags
 const itemsSelected = document.querySelector('#items_selected');
+// error
+const error = document.querySelector('#error-message');
 
 // =============================================================================
 // Export
@@ -33,4 +35,5 @@ export {
   cards,
   articles,
   totalSpan,
+  error,
 };
