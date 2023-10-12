@@ -2408,6 +2408,10 @@ button{
   cursor: pointer;
 }
 
+.filter_search label{
+  display: none;
+}
+
 .filter_search_input::-webkit-search-cancel-button{
   -webkit-appearance: none;
   content: url();
@@ -2420,7 +2424,6 @@ button{
 }
 
 .filter_btn_submit{
-  width: 20px;
   padding: 0px;
 }
 
@@ -2446,6 +2449,23 @@ button{
 .filter_list li:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(255 209 91 / var(--tw-bg-opacity));
+}
+
+.filter_list_li_selected{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 209 91 / var(--tw-bg-opacity));
+  font-weight: 700;
+}
+
+.filter_list_li_selected button{
+  margin: 0px;
+  height: 17px;
+  width: 17px;
+  background-color: transparent;
+  padding: 0px;
 }
 
 .filter_list_selected{
@@ -2643,6 +2663,10 @@ header .search_bar input[type='search']::-webkit-search-cancel-button{
   cursor: pointer;
 }
 
+header .search_bar label{
+  display: none;
+}
+
 header .search_bar button[type='submit']{
   display: flex;
   height: 51px;
@@ -2700,6 +2724,12 @@ main #filters_section{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+#error-message{
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Pages */

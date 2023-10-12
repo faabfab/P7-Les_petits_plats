@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/tags.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/tags.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// =============================================================================
+// Imports
+// =============================================================================
+import { closeTagBtnDOMEvent } from '../utils/search.js';
+import recipesDisplayCounter from './counter.js';
+import errorMessageEmptyRecipes from '../utils/error.js';
+import { filterArray, removeSelectedClass } from './filters.js';
+
+/**
+ * Fonction qui retourne le nom du filtre si name en fait partie faux sinon
+ * @param {String} name nom à tester
+ * @param {String} filterName nom du filtre
+ * @returns filterName or false
+ */
+function tagInFilter(name, filterName) {
+  if (filterArray(filterName).includes(name)) {
+    return filterName;
+  }
+  return false;
+}
+
+/**
+   * Fonction qui retourne le nom du filtre auquel name appartient
+   * @param {String} name nom du tag
+   * @returns {String} nom de filtre
+   */
+function whatFilter(name) {
+  let filterName = '';
+  if (tagInFilter(name, 'ingredients')) {
+    filterName = tagInFilter(name, 'ingredients');
+  }
+  if (tagInFilter(name, 'appliance')) {
+    filterName = tagInFilter(name, 'appliance');
+  }
+  if (tagInFilter(name, 'ustensils')) {
+    filterName = tagInFilter(name, 'ustensils');
+  }
+  return filterName;
+}
+
+/**
+ * Fonction qui retourne l'élément à afficher quand un tag est sélectionné
+ * @param {String} name nom du tag dans la listStyle
+ * @returns l'élément à afficher
+ */
+function tagElement(name) {
+  const divItemSelected = document.createElement('div');
+  divItemSelected.setAttribute('class', 'item_selected');
+  const p = document.createElement('p');
+  p.textContent = name;
+  divItemSelected.append(p);
+  const divItemClose = document.createElement('div');
+  divItemClose.setAttribute('class', 'item_selected_close');
+  divItemClose.innerHTML = '&lt;svg width="10" height="10" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">&lt;path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="black" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>&lt;/svg>';
+  divItemClose.addEventListener('click', () => {
+    divItemClose.parentElement.remove();
+    for (const filterName of filterArray(whatFilter(name))) {
+      if (filterName.toLowerCase() === name.toLowerCase()) {
+        removeSelectedClass(whatFilter(name), filterName);
+      }
+    }
+    closeTagBtnDOMEvent();
+    recipesDisplayCounter();
+    errorMessageEmptyRecipes();
+  });
+  divItemSelected.appendChild(divItemClose);
+  return divItemSelected;
+}
+
+/**
+   * Fonction qui retourne le tableau des tags sélectionnés
+   * @returns {Array}
+   */
+function tagsList() {
+  const tagsArray = [];
+  const tagsDiv = document.querySelectorAll('.item_selected');
+  for (const tag of tagsDiv) {
+    const p = tag.querySelector('p');
+    tagsArray.push(p.textContent);
+  }
+  return tagsArray;
+}
+
+function removeTag(tagItem) {
+  tagItem.parentElement.remove(tagItem);
+}
+
+// =============================================================================
+// Exports
+// =============================================================================
+export {
+  tagElement,
+  tagInFilter,
+  whatFilter,
+  tagsList,
+  removeTag,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#getArticles">getArticles</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#removeSelectedClass">removeSelectedClass</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#selectItem">selectItem</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Oct 12 2023 16:16:29 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

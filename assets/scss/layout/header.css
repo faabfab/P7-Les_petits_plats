@@ -24,7 +24,9 @@ header .search_bar input[type='search']::-webkit-search-cancel-button{
     content: url();
     cursor: pointer;
 }
-
+header .search_bar label{
+    @apply hidden;
+}
 header .search_bar button[type='submit']{
     @apply w-[51px] h-[51px] bg-[#1B1B1B] rounded-[11px] text-white p-0 flex items-center justify-center;
 }

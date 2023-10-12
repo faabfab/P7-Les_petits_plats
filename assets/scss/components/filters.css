@@ -13,6 +13,9 @@
     @apply focus:outline-none w-[125px] pl-[5px];
     @apply hover:cursor-pointer;
 }
+.filter_search label{
+    @apply hidden;
+}
 .filter_search_input::-webkit-search-cancel-button{
     -webkit-appearance: none;
     content: url();
@@ -23,7 +26,7 @@
 }
 
 .filter_btn_submit{
-    @apply p-0 w-[20px];
+    @apply p-0;
 }
 
 .filter_list{
@@ -32,6 +35,14 @@
 }
 .filter_list li{
     @apply pl-[15px] pr-[15px] pt-[10px] pb-[10px] cursor-pointer hover:bg-[#FFD15B];
+}
+
+.filter_list_li_selected{
+    @apply bg-[#FFD15B] font-bold flex justify-between items-center;
+}
+
+.filter_list_li_selected button{
+    @apply m-[0px] p-[0px] bg-transparent w-[17px] h-[17px];
 }
 
 .filter_list_selected{

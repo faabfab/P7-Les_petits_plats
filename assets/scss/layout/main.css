@@ -14,3 +14,7 @@ main #filters_section{
 #cards{
     @apply mt-[20px] flex flex-wrap justify-between;
 }
+
+#error-message{
+    @apply flex justify-center mb-[100px];
+}
