@@ -158,14 +158,14 @@ function tagsSearch() {
  */
 function DOMSearch(value) {
   const articles = getArticles();
-  if (value.length < 3) {
+  if ((value.length < 3) || !(value.match(/^([a-zA-Z0-9 ]+)$/))) {
     articles.forEach((article) => {
       article.classList.remove('hidden_div');
     });
     tagsSearch();
     return;
   }
-  console.time(`search bar : ${value}`);
+  // console.time(`search bar : ${value}`);
   articles.forEach((article) => {
     if (!isInElementT(value, 'h3', article)
         && !isInElementT(value, '.card_content_description', article)
@@ -179,7 +179,7 @@ function DOMSearch(value) {
     }
     tagsSearch();
   });
-  console.timeEnd(`search bar : ${value}`);
+  // console.timeEnd(`search bar : ${value}`);
 }
 
 /**

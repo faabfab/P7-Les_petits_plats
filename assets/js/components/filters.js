@@ -77,8 +77,10 @@ function removeSelectedClass(filterName, name) {
   const filterElements = filter.querySelectorAll('li');
   filterElements.forEach((filterItem) => {
     if (filterItem.textContent.toLowerCase() === name.toLowerCase()) {
-      const closeButton = filterItem.querySelector('button');
-      filterItem.removeChild(closeButton);
+      const closeButton = filterItem.querySelector('.close_filter_list_li_selected');
+      if (closeButton) {
+        filterItem.removeChild(closeButton);
+      }
       filterItem.removeAttribute('class');
     }
   });
@@ -108,8 +110,7 @@ function filterInputEvent(filterName) {
   filterInput.addEventListener('input', () => {
     const filterList = document.querySelector(`#${filterName}_list`);
     const filterItems = filterList.querySelectorAll('li');
-
-    if (filterInput.value.length < 3) {
+    if ((filterInput.value.length < 3) || !(filterInput.value.match(/^([a-zA-Z0-9 ]+)$/))) {
       filterItems.forEach((filterItem) => {
         filterItem.removeAttribute('class');
       });

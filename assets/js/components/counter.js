@@ -1,7 +1,3 @@
-// import { articles, totalSpan } from '../utils/variables.js';
-// import { articles } from '../utils/variables.js';
-import { totalSpan } from '../utils/variables.js';
-
 /**
  * Fonction qui retourne vrai si l'article est affichée
  * @param {Element} article element à tester
@@ -22,7 +18,8 @@ function isHiddenRecipe(article) {
  */
 function recipesDisplayCounter() {
   const articles = document.querySelectorAll('article');
-  // const totalSpan = document.querySelector('#total');
+  const totalSpan = document.querySelector('#total');
+  // console.log(articles);
   let totalRecipes = 0;
   let hiddenRecipes = 0;
   let displayRecipes = 0;

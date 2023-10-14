@@ -39,19 +39,19 @@ import { DOMSearch, closeTagBtnDOMEvent } from './utils/search.js';
  */
 function init() {
   // init DOM
-  console.time('recipes init');
+  // console.time('recipes init');
   getCards(recipes);
-  console.timeEnd('recipes init');
+  // console.timeEnd('recipes init');
 
-  console.time('ingrédients init');
+  // console.time('ingrédients init');
   getFilterElements(ingredientsArray(recipes), 'ingredients');
-  console.timeEnd('ingrédients init');
-  console.time('appareils init');
+  // console.timeEnd('ingrédients init');
+  // console.time('appareils init');
   getFilterElements(applianceArray(recipes), 'appliance');
-  console.timeEnd('appareils init');
-  console.time('ustensiles init');
+  // console.timeEnd('appareils init');
+  // console.time('ustensiles init');
   getFilterElements(ustensilsArray(recipes), 'ustensils');
-  console.timeEnd('ustensiles init');
+  // console.timeEnd('ustensiles init');
 
   // Events on DOM
   // Input principal
@@ -107,12 +107,11 @@ init();
 // =============================================================================
 
 // filters
-// BUG: Importation des variables ne marche pas
 const filtersItems = document.querySelectorAll('.filter_list li');
 const itemsSelected = document.querySelector('#items_selected');
 for (const filterItem of filtersItems) {
   filterItem.addEventListener('click', () => {
-    console.time(`Filter search : ${filterItem.textContent}`);
+    // console.time(`Filter search : ${filterItem.textContent}`);
 
     if (!tagsList().includes(filterItem.textContent) && !filterItem.getAttribute('class')) {
       itemsSelected.appendChild(tagElement(filterItem.textContent));
@@ -133,7 +132,7 @@ for (const filterItem of filtersItems) {
     recipesDisplayCounter();
     errorMessageEmptyRecipes();
 
-    console.timeEnd(`Filter search : ${filterItem.textContent}`);
+    // console.timeEnd(`Filter search : ${filterItem.textContent}`);
   });
 }
 
@@ -145,7 +144,7 @@ filterInputEvent('ustensils');
 // Main search bar
 mainSearch.addEventListener('input', () => {
   // console.time('search bar');
-  DOMSearch(mainSearch.value);
+  DOMSearch(mainSearch.value.toLowerCase());
   // console.timeEnd('search bar');
   recipesDisplayCounter();
   errorMessageEmptyRecipes();

@@ -56,6 +56,7 @@ function tagElement(name) {
     divItemClose.parentElement.remove();
     filterArray(whatFilter(name)).forEach((filterName) => {
       if (filterName.toLowerCase() === name.toLowerCase()) {
+        // console.log(`${whatFilter(name)} ${filterName}`);
         removeSelectedClass(whatFilter(name), filterName);
       }
     });
@@ -81,6 +82,10 @@ function tagsList() {
   return tagsArray;
 }
 
+/**
+ * Fonction qui efface le tag sélectionné
+ * @param {Element} tagItem le tag a effacer
+ */
 function removeTag(tagItem) {
   tagItem.parentElement.remove(tagItem);
 }
