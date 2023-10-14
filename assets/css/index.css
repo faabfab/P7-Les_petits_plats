@@ -2740,7 +2740,7 @@ header{
   width: 1440px;
   flex-direction: column;
   align-items: center;
-  background-image: url('/assets/img/header_background.png');
+  background-image: url('../img/header_background.png');
   background-position: center;
   background-repeat: no-repeat;
 }

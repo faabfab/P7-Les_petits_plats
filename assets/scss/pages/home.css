@@ -1,5 +1,5 @@
 header{
-    @apply w-[1440px] h-667 bg-[url('/assets/img/header_background.png')] bg-no-repeat bg-center flex flex-col items-center;
+    @apply w-[1440px] h-667 bg-[url('../img/header_background.png')] bg-no-repeat bg-center flex flex-col items-center;
     @apply xl:w-full;
 }
 
