@@ -105,8 +105,10 @@ function removeSelectedClass(filterName, name) {
   const filterElements = filter.querySelectorAll('li');
   filterElements.forEach((filterItem) => {
     if (filterItem.textContent.toLowerCase() === name.toLowerCase()) {
-      const closeButton = filterItem.querySelector('button');
-      filterItem.removeChild(closeButton);
+      const closeButton = filterItem.querySelector('.close_filter_list_li_selected');
+      if (closeButton) {
+        filterItem.removeChild(closeButton);
+      }
       filterItem.removeAttribute('class');
     }
   });
@@ -136,8 +138,7 @@ function filterInputEvent(filterName) {
   filterInput.addEventListener('input', () => {
     const filterList = document.querySelector(`#${filterName}_list`);
     const filterItems = filterList.querySelectorAll('li');
-
-    if (filterInput.value.length &lt; 3) {
+    if ((filterInput.value.length &lt; 3) || !(filterInput.value.match(/^([a-zA-Z0-9 ]+)$/))) {
       filterItems.forEach((filterItem) => {
         filterItem.removeAttribute('class');
       });
@@ -201,13 +202,13 @@ export {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#getArticles">getArticles</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#removeSelectedClass">removeSelectedClass</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#selectItem">selectItem</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#getArticles">getArticles</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#removeSelectedClass">removeSelectedClass</a></li><li><a href="global.html#removeTag">removeTag</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#selectItem">selectItem</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Oct 12 2023 16:15:02 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Oct 14 2023 16:03:39 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>
