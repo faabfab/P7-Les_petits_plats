@@ -70,11 +70,11 @@ function init() {
 
     filterListBtn.addEventListener('click', () => {
       if (filter.getAttribute('data-state') === 'close') {
-        filterListState.innerHTML = '<img src="/assets/img/list_close.svg" alt="list close"></img>';
+        filterListState.innerHTML = '<img src="./assets/img/list_close.svg" alt="list close"></img>';
         filterListContent.classList.remove('hidden_div');
         filter.setAttribute('data-state', 'open');
       } else {
-        filterListState.innerHTML = '<img src="/assets/img/list_open.svg" alt="list open"></img>';
+        filterListState.innerHTML = '<img src="./assets/img/list_open.svg" alt="list open"></img>';
         filterListContent.classList.add('hidden_div');
         filter.setAttribute('data-state', 'close');
       }
