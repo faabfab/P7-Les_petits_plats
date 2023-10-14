@@ -26,7 +26,7 @@ function thumbElement(image, name) {
   a.setAttribute('href', '#');
   const picture = document.createElement('picture');
   const img = document.createElement('img');
-  const imgPath = `/assets/img/recipes/${image}`;
+  const imgPath = `./assets/img/recipes/${image}`;
   img.setAttribute('src', imgPath);
   img.setAttribute('alt', name);
   picture.appendChild(img);
