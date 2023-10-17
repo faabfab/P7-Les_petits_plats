@@ -28,11 +28,14 @@ import {
   filterInputEvent,
   filterResetInput,
   selectItem,
+  removeApplianceList,
+  removeIngredientsList,
+  removeUstensilsList,
 } from './components/filters.js';
 
 import getCards from './components/cards.js';
 
-import { DOMSearch, closeTagBtnDOMEvent } from './utils/search.js';
+import { DOMSearch, closeTagBtnDOMEvent, tagsSearch } from './utils/search.js';
 
 /**
  * Fonction d'initialisation du DOM
@@ -131,6 +134,9 @@ for (const filterItem of filtersItems) {
     closeTagBtnDOMEvent();
     recipesDisplayCounter();
     errorMessageEmptyRecipes();
+    // removeApplianceList();
+    // removeIngredientsList();
+    // removeUstensilsList();
 
     // console.timeEnd(`Filter search : ${filterItem.textContent}`);
   });
@@ -148,6 +154,9 @@ mainSearch.addEventListener('input', () => {
   // console.timeEnd('search bar');
   recipesDisplayCounter();
   errorMessageEmptyRecipes();
+  removeApplianceList();
+  removeIngredientsList();
+  removeUstensilsList();
 });
 
 // Reset button of search bar

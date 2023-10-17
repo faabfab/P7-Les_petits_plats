@@ -4,7 +4,13 @@
 import { closeTagBtnDOMEvent } from '../utils/search.js';
 import recipesDisplayCounter from './counter.js';
 import errorMessageEmptyRecipes from '../utils/error.js';
-import { filterArray, removeSelectedClass } from './filters.js';
+import {
+  filterArray,
+  removeSelectedClass,
+  removeApplianceList,
+  removeIngredientsList,
+  removeUstensilsList,
+} from './filters.js';
 
 /**
  * Fonction qui retourne le nom du filtre si name en fait partie faux sinon
@@ -63,6 +69,9 @@ function tagElement(name) {
     closeTagBtnDOMEvent();
     recipesDisplayCounter();
     errorMessageEmptyRecipes();
+    // removeApplianceList();
+    // removeIngredientsList();
+    // removeUstensilsList();
   });
   divItemSelected.appendChild(divItemClose);
   return divItemSelected;

@@ -2,7 +2,6 @@
 // Imports
 // =============================================================================
 import { tagsList, whatFilter } from '../components/tags.js';
-
 /**
  * Fonction qui retourne l'élément qu DOM qui contient tous les articles
  * @returns L'élément que contient tous les articles
@@ -173,11 +172,13 @@ function DOMSearch(value) {
         && !isInDataAttribute(value, 'data-ustensils', article)
     ) {
       article.classList.add('hidden_div');
+      // TODO: Enlever les éléments dans les listes de filtres
     } else {
       article.classList.remove('hidden_div');
     }
     tagsSearch();
   });
+  // removeInFilterList('appliance');
   // console.timeEnd(`search bar : ${value}`);
 }
 
