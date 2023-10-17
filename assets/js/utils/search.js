@@ -37,12 +37,11 @@ function isInElementT(value, DOMElement, article) {
  */
 function isInIngredients(value, article) {
   const ingredientsName = article.querySelectorAll('.card_ingredient_name');
-  // BUG: eslint-disable-next-line consistent-return
   ingredientsName.forEach((ingredientName) => {
     const ingredient = ingredientName.textContent.toLowerCase();
     if (ingredient.includes(value)) {
       return true;
-    }
+    } return false;
   });
 }
 
