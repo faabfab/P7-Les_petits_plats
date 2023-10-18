@@ -149,6 +149,11 @@ function selectItem(filterItem) {
   filterItem.appendChild(closeItemSelected);
 }
 
+/**
+ * Fonction qui retourne le tableau des filtres des recettes affichées
+ * @param {String} filterName nom du filtre
+ * @returns le tableau des filtre
+ */
 function filtersDOMArray(filterName) {
   const articles = document.querySelectorAll('article');
   const newApplianceArray = [];
@@ -183,6 +188,10 @@ function filtersDOMArray(filterName) {
   return newApplianceArray;
 }
 
+/**
+ * Fonction qui affiche les éléments des filtres des recettes affichées
+ * @param {String} filterName nom du filtre
+ */
 function filterUpdate(filterName) {
   const filterIdList = `#${filterName}_list li`;
   const filterDOMList = document.querySelectorAll(filterIdList);
