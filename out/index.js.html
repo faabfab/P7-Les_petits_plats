@@ -56,6 +56,7 @@ import {
   filterInputEvent,
   filterResetInput,
   selectItem,
+  filterUpdate,
 } from './components/filters.js';
 
 import getCards from './components/cards.js';
@@ -98,11 +99,11 @@ function init() {
 
     filterListBtn.addEventListener('click', () => {
       if (filter.getAttribute('data-state') === 'close') {
-        filterListState.innerHTML = '&lt;img src="/assets/img/list_close.svg" alt="list close">&lt;/img>';
+        filterListState.innerHTML = '&lt;img src="./assets/img/list_close.svg" alt="list close">&lt;/img>';
         filterListContent.classList.remove('hidden_div');
         filter.setAttribute('data-state', 'open');
       } else {
-        filterListState.innerHTML = '&lt;img src="/assets/img/list_open.svg" alt="list open">&lt;/img>';
+        filterListState.innerHTML = '&lt;img src="./assets/img/list_open.svg" alt="list open">&lt;/img>';
         filterListContent.classList.add('hidden_div');
         filter.setAttribute('data-state', 'close');
       }
@@ -137,10 +138,9 @@ init();
 // filters
 const filtersItems = document.querySelectorAll('.filter_list li');
 const itemsSelected = document.querySelector('#items_selected');
-for (const filterItem of filtersItems) {
+filtersItems.forEach((filterItem) => {
   filterItem.addEventListener('click', () => {
     // console.time(`Filter search : ${filterItem.textContent}`);
-
     if (!tagsList().includes(filterItem.textContent) &amp;&amp; !filterItem.getAttribute('class')) {
       itemsSelected.appendChild(tagElement(filterItem.textContent));
       selectItem(filterItem);
@@ -159,10 +159,12 @@ for (const filterItem of filtersItems) {
     closeTagBtnDOMEvent();
     recipesDisplayCounter();
     errorMessageEmptyRecipes();
-
+    filterUpdate('ingredients');
+    filterUpdate('appliance');
+    filterUpdate('ustensils');
     // console.timeEnd(`Filter search : ${filterItem.textContent}`);
   });
-}
+});
 
 // input filter event
 filterInputEvent('ingredients');
@@ -179,12 +181,19 @@ mainSearch.addEventListener('input', () => {
 });
 
 // Reset button of search bar
-btResetSearchBar.addEventListener('click', resetSearchBar);
+btResetSearchBar.addEventListener('click', () => {
+  resetSearchBar();
+  filterUpdate('ingredients');
+  filterUpdate('appliance');
+  filterUpdate('ustensils');
+});
 
 // Reset buttons filter search events
-for (const filterResetButton of filterResetButtons) {
-  filterResetButton.addEventListener('click', filterResetInput);
-}
+filterResetButtons.forEach((filterResetButton) => {
+  filterResetButton.addEventListener('click', () => {
+    filterResetInput();
+  });
+});
 </code></pre>
         </article>
     </section>
@@ -195,13 +204,13 @@ for (const filterResetButton of filterResetButtons) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#getArticles">getArticles</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#removeSelectedClass">removeSelectedClass</a></li><li><a href="global.html#removeTag">removeTag</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#selectItem">selectItem</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#filterUpdate">filterUpdate</a></li><li><a href="global.html#filtersDOMArray">filtersDOMArray</a></li><li><a href="global.html#getArticles">getArticles</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#removeSelectedClass">removeSelectedClass</a></li><li><a href="global.html#removeTag">removeTag</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#selectItem">selectItem</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Oct 14 2023 16:03:39 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Oct 18 2023 10:52:36 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

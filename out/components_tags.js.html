@@ -32,7 +32,11 @@
 import { closeTagBtnDOMEvent } from '../utils/search.js';
 import recipesDisplayCounter from './counter.js';
 import errorMessageEmptyRecipes from '../utils/error.js';
-import { filterArray, removeSelectedClass } from './filters.js';
+import {
+  filterArray,
+  removeSelectedClass,
+  filterUpdate,
+} from './filters.js';
 
 /**
  * Fonction qui retourne le nom du filtre si name en fait partie faux sinon
@@ -91,6 +95,9 @@ function tagElement(name) {
     closeTagBtnDOMEvent();
     recipesDisplayCounter();
     errorMessageEmptyRecipes();
+    filterUpdate('ingredients');
+    filterUpdate('appliance');
+    filterUpdate('ustensils');
   });
   divItemSelected.appendChild(divItemClose);
   return divItemSelected;
@@ -138,13 +145,13 @@ export {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#getArticles">getArticles</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#removeSelectedClass">removeSelectedClass</a></li><li><a href="global.html#removeTag">removeTag</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#selectItem">selectItem</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DOMSearch">DOMSearch</a></li><li><a href="global.html#applianceArray">applianceArray</a></li><li><a href="global.html#closeButtonSearchInput">closeButtonSearchInput</a></li><li><a href="global.html#closeTagBtnDOMEvent">closeTagBtnDOMEvent</a></li><li><a href="global.html#elementDatas">elementDatas</a></li><li><a href="global.html#elementTime">elementTime</a></li><li><a href="global.html#errorMessageEmptyRecipes">errorMessageEmptyRecipes</a></li><li><a href="global.html#filterArray">filterArray</a></li><li><a href="global.html#filterInputEvent">filterInputEvent</a></li><li><a href="global.html#filterResetInput">filterResetInput</a></li><li><a href="global.html#filterUpdate">filterUpdate</a></li><li><a href="global.html#filtersDOMArray">filtersDOMArray</a></li><li><a href="global.html#getArticles">getArticles</a></li><li><a href="global.html#getCards">getCards</a></li><li><a href="global.html#getFilterElements">getFilterElements</a></li><li><a href="global.html#ingredientListElement">ingredientListElement</a></li><li><a href="global.html#ingredientsArray">ingredientsArray</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isHiddenRecipe">isHiddenRecipe</a></li><li><a href="global.html#isInDataAttribute">isInDataAttribute</a></li><li><a href="global.html#isInElementT">isInElementT</a></li><li><a href="global.html#isInIngredients">isInIngredients</a></li><li><a href="global.html#isIngredient">isIngredient</a></li><li><a href="global.html#recipesDisplayCounter">recipesDisplayCounter</a></li><li><a href="global.html#removeSelectedClass">removeSelectedClass</a></li><li><a href="global.html#removeTag">removeTag</a></li><li><a href="global.html#resetSearchBar">resetSearchBar</a></li><li><a href="global.html#searchByTag">searchByTag</a></li><li><a href="global.html#searchInAppliance">searchInAppliance</a></li><li><a href="global.html#searchInIngredients">searchInIngredients</a></li><li><a href="global.html#searchInUstensils">searchInUstensils</a></li><li><a href="global.html#selectItem">selectItem</a></li><li><a href="global.html#tagElement">tagElement</a></li><li><a href="global.html#tagInFilter">tagInFilter</a></li><li><a href="global.html#tagsList">tagsList</a></li><li><a href="global.html#tagsSearch">tagsSearch</a></li><li><a href="global.html#textContentElement">textContentElement</a></li><li><a href="global.html#thumbElement">thumbElement</a></li><li><a href="global.html#ustensilsArray">ustensilsArray</a></li><li><a href="global.html#whatFilter">whatFilter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Oct 14 2023 16:03:39 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Oct 18 2023 10:52:36 GMT+0200 (heure d’été d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>
