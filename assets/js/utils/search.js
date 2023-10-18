@@ -2,6 +2,8 @@
 // Imports
 // =============================================================================
 import { tagsList, whatFilter } from '../components/tags.js';
+import { filterUpdate } from '../components/filters.js';
+
 /**
  * Fonction qui retourne l'élément qu DOM qui contient tous les articles
  * @returns L'élément que contient tous les articles
@@ -161,6 +163,9 @@ function DOMSearch(value) {
       article.classList.remove('hidden_div');
     });
     tagsSearch();
+    filterUpdate('ingredients');
+    filterUpdate('appliance');
+    filterUpdate('ustensils');
     return;
   }
   // console.time(`search bar : ${value}`);
@@ -176,9 +181,11 @@ function DOMSearch(value) {
     } else {
       article.classList.remove('hidden_div');
     }
-    tagsSearch();
   });
-  // removeInFilterList('appliance');
+  tagsSearch();
+  filterUpdate('ingredients');
+  filterUpdate('appliance');
+  filterUpdate('ustensils');
   // console.timeEnd(`search bar : ${value}`);
 }
 

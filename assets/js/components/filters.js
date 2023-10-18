@@ -149,76 +149,49 @@ function selectItem(filterItem) {
   filterItem.appendChild(closeItemSelected);
 }
 
-function ApplianceDOMArray() {
+function filtersDOMArray(filterName) {
   const articles = document.querySelectorAll('article');
   const newApplianceArray = [];
   articles.forEach((article) => {
     if (!(article.getAttribute('class').includes('hidden_div'))) {
-      // console.log(article.querySelector('.card_content').getAttribute(`data-${filter}`));
-      if (!newApplianceArray.includes(article.querySelector('.card_content').getAttribute('data-appliance'))) {
-        newApplianceArray.push(article.querySelector('.card_content').getAttribute('data-appliance'));
+      const ingredients = article.querySelectorAll('.card_ingredient_name');
+      switch (filterName) {
+        case 'appliance':
+          if (!newApplianceArray.includes(article.querySelector('.card_content').getAttribute('data-appliance'))) {
+            newApplianceArray.push(article.querySelector('.card_content').getAttribute('data-appliance'));
+          }
+          break;
+        case 'ingredients':
+          ingredients.forEach((ingredient) => {
+            if (!newApplianceArray.includes(ingredient.textContent)) {
+              newApplianceArray.push(ingredient.textContent);
+            }
+          });
+          break;
+        case 'ustensils':
+          article.querySelector('.card_content').getAttribute('data-ustensils').split(',').forEach((ustensil) => {
+            if (!newApplianceArray.includes(ustensil)) {
+              newApplianceArray.push(ustensil);
+            }
+          });
+          break;
+        default:
+          break;
       }
     }
   });
   return newApplianceArray;
 }
 
-function removeApplianceList() {
-  const applianceDOMList = document.querySelectorAll('#appliance_list li');
-  applianceDOMList.forEach((applianceLi) => {
-    if (!ApplianceDOMArray().includes(applianceLi.textContent)) {
-      applianceLi.setAttribute('class', 'hidden_div');
-    } else { applianceLi.removeAttribute('class'); }
-  });
-}
-
-function ingredientsDOMArray() {
-  const articles = document.querySelectorAll('article');
-  const newApplianceArray = [];
-  articles.forEach((article) => {
-    if (!(article.getAttribute('class').includes('hidden_div'))) {
-      const ingredients = article.querySelectorAll('.card_ingredient_name');
-      ingredients.forEach((ingredient) => {
-        if (!newApplianceArray.includes(ingredient.textContent)) {
-          newApplianceArray.push(ingredient.textContent);
-        }
-      });
+function filterUpdate(filterName) {
+  const filterIdList = `#${filterName}_list li`;
+  const filterDOMList = document.querySelectorAll(filterIdList);
+  filterDOMList.forEach((filterLi) => {
+    if (!filtersDOMArray(filterName).includes(filterLi.textContent)) {
+      filterLi.classList.add('hidden_div');
+    } else {
+      filterLi.classList.remove('hidden_div');
     }
-  });
-  return newApplianceArray;
-}
-
-function removeIngredientsList() {
-  const ingredientsDOMList = document.querySelectorAll('#ingredients_list li');
-  ingredientsDOMList.forEach((ingredientLi) => {
-    if (!ingredientsDOMArray().includes(ingredientLi.textContent)) {
-      ingredientLi.setAttribute('class', 'hidden_div');
-    } else { ingredientLi.removeAttribute('class'); }
-  });
-}
-
-function ustensilsDOMArray() {
-  const articles = document.querySelectorAll('article');
-  const newApplianceArray = [];
-  articles.forEach((article) => {
-    if (!(article.getAttribute('class').includes('hidden_div'))) {
-      article.querySelector('.card_content').getAttribute('data-ustensils').split(',').forEach((ustensil) => {
-        if (!newApplianceArray.includes(ustensil)) {
-          newApplianceArray.push(ustensil);
-        }
-      });
-    }
-  });
-  // console.log(newApplianceArray);
-  return newApplianceArray;
-}
-
-function removeUstensilsList() {
-  const ustensilsDOMList = document.querySelectorAll('#ustensils_list li');
-  ustensilsDOMList.forEach((ustensilLi) => {
-    if (!ustensilsDOMArray().includes(ustensilLi.textContent)) {
-      ustensilLi.setAttribute('class', 'hidden_div');
-    } else { ustensilLi.removeAttribute('class'); }
   });
 }
 
@@ -236,7 +209,5 @@ export {
   filterArray,
   selectItem,
   removeSelectedClass,
-  removeApplianceList,
-  removeIngredientsList,
-  removeUstensilsList,
+  filterUpdate,
 };

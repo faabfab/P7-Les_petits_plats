@@ -7,9 +7,7 @@ import errorMessageEmptyRecipes from '../utils/error.js';
 import {
   filterArray,
   removeSelectedClass,
-  removeApplianceList,
-  removeIngredientsList,
-  removeUstensilsList,
+  filterUpdate,
 } from './filters.js';
 
 /**
@@ -69,9 +67,9 @@ function tagElement(name) {
     closeTagBtnDOMEvent();
     recipesDisplayCounter();
     errorMessageEmptyRecipes();
-    // removeApplianceList();
-    // removeIngredientsList();
-    // removeUstensilsList();
+    filterUpdate('ingredients');
+    filterUpdate('appliance');
+    filterUpdate('ustensils');
   });
   divItemSelected.appendChild(divItemClose);
   return divItemSelected;

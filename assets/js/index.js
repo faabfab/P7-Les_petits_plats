@@ -28,14 +28,12 @@ import {
   filterInputEvent,
   filterResetInput,
   selectItem,
-  removeApplianceList,
-  removeIngredientsList,
-  removeUstensilsList,
+  filterUpdate,
 } from './components/filters.js';
 
 import getCards from './components/cards.js';
 
-import { DOMSearch, closeTagBtnDOMEvent, tagsSearch } from './utils/search.js';
+import { DOMSearch, closeTagBtnDOMEvent } from './utils/search.js';
 
 /**
  * Fonction d'initialisation du DOM
@@ -112,10 +110,9 @@ init();
 // filters
 const filtersItems = document.querySelectorAll('.filter_list li');
 const itemsSelected = document.querySelector('#items_selected');
-for (const filterItem of filtersItems) {
+filtersItems.forEach((filterItem) => {
   filterItem.addEventListener('click', () => {
     // console.time(`Filter search : ${filterItem.textContent}`);
-
     if (!tagsList().includes(filterItem.textContent) && !filterItem.getAttribute('class')) {
       itemsSelected.appendChild(tagElement(filterItem.textContent));
       selectItem(filterItem);
@@ -134,13 +131,12 @@ for (const filterItem of filtersItems) {
     closeTagBtnDOMEvent();
     recipesDisplayCounter();
     errorMessageEmptyRecipes();
-    // removeApplianceList();
-    // removeIngredientsList();
-    // removeUstensilsList();
-
+    filterUpdate('ingredients');
+    filterUpdate('appliance');
+    filterUpdate('ustensils');
     // console.timeEnd(`Filter search : ${filterItem.textContent}`);
   });
-}
+});
 
 // input filter event
 filterInputEvent('ingredients');
@@ -154,15 +150,19 @@ mainSearch.addEventListener('input', () => {
   // console.timeEnd('search bar');
   recipesDisplayCounter();
   errorMessageEmptyRecipes();
-  removeApplianceList();
-  removeIngredientsList();
-  removeUstensilsList();
 });
 
 // Reset button of search bar
-btResetSearchBar.addEventListener('click', resetSearchBar);
+btResetSearchBar.addEventListener('click', () => {
+  resetSearchBar();
+  filterUpdate('ingredients');
+  filterUpdate('appliance');
+  filterUpdate('ustensils');
+});
 
 // Reset buttons filter search events
-for (const filterResetButton of filterResetButtons) {
-  filterResetButton.addEventListener('click', filterResetInput);
-}
+filterResetButtons.forEach((filterResetButton) => {
+  filterResetButton.addEventListener('click', () => {
+    filterResetInput();
+  });
+});
